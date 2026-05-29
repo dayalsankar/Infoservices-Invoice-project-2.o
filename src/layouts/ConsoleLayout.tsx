@@ -2,7 +2,7 @@
 // Dense operator shell for Finance Admin, Super Admin, HR, Auditor, Executive.
 // Permanent 240px sidebar (collapsible to 64px mini-variant) + sticky top bar.
 
-import {
+import React, {
   useState,
   useCallback,
   useEffect,
@@ -45,8 +45,6 @@ import {
   Search as SearchIcon,
   NotificationsOutlined as BellIcon,
   KeyboardCommandKey as CmdIcon,
-  ExpandLess,
-  ExpandMore,
   DashboardOutlined,
   BusinessOutlined,
   PeopleOutlined,
@@ -59,17 +57,19 @@ import {
   SecurityOutlined,
   SettingsOutlined,
   NavigateNext,
-  FiberManualRecord,
   AccountCircleOutlined,
   SwapHorizOutlined,
   LogoutOutlined,
-  CheckCircleOutlined as CheckCircleOutline,
-  ErrorOutlineOutlined as ErrorOutline,
+  CheckCircleOutlined,
+  WarningAmberOutlined,
   InfoOutlined,
+  DarkModeOutlined,
+  LightModeOutlined,
 } from '@mui/icons-material';
 import type { UserRole, CurrentUser } from '../types/auth';
 import { ROLE_LABELS } from '../types/auth';
 import { colors, shadows } from '../theme/tokens';
+import { useThemeMode } from '../theme/ThemeProvider';
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
@@ -83,27 +83,25 @@ interface NavItem {
   label: string;
   path: string;
   icon: ReactNode;
+  roles?: UserRole[];
 }
 
-interface NavGroup {
-  groupLabel: string;
-  icon: ReactNode;
-  roles?: UserRole[]; // undefined = visible to all console roles
+interface NavSection {
+  sectionLabel: string;
   items: NavItem[];
 }
 
 // ─── Navigation Config ────────────────────────────────────────────────────────
 
-const NAV_GROUPS: NavGroup[] = [
+const NAV_SECTIONS: NavSection[] = [
   {
-    groupLabel: 'Dashboard',
-    icon: <DashboardOutlined fontSize="small" />,
-    items: [{ label: 'Overview', path: '/dashboard', icon: <DashboardOutlined fontSize="small" /> }],
+    sectionLabel: 'OVERVIEW',
+    items: [
+      { label: 'Dashboard', path: '/dashboard', icon: <DashboardOutlined fontSize="small" /> },
+    ],
   },
   {
-    groupLabel: 'Master Data',
-    icon: <BusinessOutlined fontSize="small" />,
-    roles: ['super_admin', 'finance_admin', 'hr_admin'],
+    sectionLabel: 'MASTER DATA',
     items: [
       { label: 'Companies', path: '/master/companies', icon: <BusinessOutlined fontSize="small" /> },
       { label: 'Clients', path: '/master/clients', icon: <PeopleOutlined fontSize="small" /> },
@@ -112,48 +110,25 @@ const NAV_GROUPS: NavGroup[] = [
     ],
   },
   {
-    groupLabel: 'Timesheets',
-    icon: <TimerOutlined fontSize="small" />,
+    sectionLabel: 'OPERATIONS',
     items: [
-      { label: 'All Timesheets', path: '/timesheets', icon: <TimerOutlined fontSize="small" /> },
+      { label: 'Timesheets', path: '/timesheets', icon: <TimerOutlined fontSize="small" /> },
+      { label: 'Invoices', path: '/invoices', icon: <ReceiptLongOutlined fontSize="small" /> },
+      { label: 'Payments', path: '/payments', icon: <PaymentsOutlined fontSize="small" /> },
     ],
   },
   {
-    groupLabel: 'Invoices',
-    icon: <ReceiptLongOutlined fontSize="small" />,
+    sectionLabel: 'INSIGHTS',
     items: [
-      { label: 'All Invoices', path: '/invoices', icon: <ReceiptLongOutlined fontSize="small" /> },
-    ],
-  },
-  {
-    groupLabel: 'Payments',
-    icon: <PaymentsOutlined fontSize="small" />,
-    roles: ['super_admin', 'finance_admin'],
-    items: [
-      { label: 'Payment Records', path: '/payments', icon: <PaymentsOutlined fontSize="small" /> },
-    ],
-  },
-  {
-    groupLabel: 'Reports',
-    icon: <BarChartOutlined fontSize="small" />,
-    items: [
-      { label: 'Analytics', path: '/reports', icon: <BarChartOutlined fontSize="small" /> },
-    ],
-  },
-  {
-    groupLabel: 'Audit',
-    icon: <SecurityOutlined fontSize="small" />,
-    roles: ['super_admin', 'auditor'],
-    items: [
+      { label: 'Reports', path: '/reports', icon: <BarChartOutlined fontSize="small" /> },
       { label: 'Audit Logs', path: '/audit', icon: <SecurityOutlined fontSize="small" /> },
     ],
   },
   {
-    groupLabel: 'Settings',
-    icon: <SettingsOutlined fontSize="small" />,
-    roles: ['super_admin'],
+    sectionLabel: 'ADMIN',
     items: [
-      { label: 'System Settings', path: '/settings', icon: <SettingsOutlined fontSize="small" /> },
+      { label: 'Users', path: '/users', icon: <PeopleOutlined fontSize="small" /> },
+      { label: 'Settings', path: '/settings', icon: <SettingsOutlined fontSize="small" /> },
     ],
   },
 ];
@@ -173,9 +148,9 @@ interface Notification {
 
 const NOTIF_ICON: Record<NotifSeverity, ReactNode> = {
   info: <InfoOutlined fontSize="small" color="info" />,
-  success: <CheckCircleOutline fontSize="small" color="success" />,
-  warning: <ErrorOutline fontSize="small" color="warning" />,
-  error: <ErrorOutline fontSize="small" color="error" />,
+  success: <CheckCircleOutlined fontSize="small" color="success" />,
+  warning: <WarningAmberOutlined fontSize="small" color="warning" />,
+  error: <WarningAmberOutlined fontSize="small" color="error" />,
 };
 
 // ─── Breadcrumb Helper ────────────────────────────────────────────────────────
@@ -192,6 +167,7 @@ const PATH_LABELS: Record<string, string> = {
   payments: 'Payments',
   reports: 'Reports',
   audit: 'Audit Logs',
+  users: 'Users',
   settings: 'Settings',
   new: 'New',
   edit: 'Edit',
@@ -209,125 +185,65 @@ function useBreadcrumbs() {
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
 
-interface NavGroupRowProps {
-  group: NavGroup;
-  mini: boolean;
-  role: UserRole;
-  open: boolean;
-  onToggle: () => void;
-}
-
-function NavGroupRow({ group, mini, role, open, onToggle }: NavGroupRowProps) {
+function NavItemRow({ item, mini }: { item: NavItem; mini: boolean }) {
   const theme = useTheme();
   const location = useLocation();
+  
+  const isActive = item.path === '/dashboard'
+    ? location.pathname === '/dashboard'
+    : location.pathname.startsWith(item.path);
 
-  const isGroupVisible =
-    !group.roles || group.roles.includes(role);
-  if (!isGroupVisible) return null;
-
-  const isGroupActive = group.items.some((item) =>
-    location.pathname.startsWith(item.path),
-  );
-
-  return (
-    <>
-      <Tooltip title={mini ? group.groupLabel : ''} placement="right">
-        <ListItemButton
-          onClick={onToggle}
-          aria-expanded={open}
-          aria-label={`${group.groupLabel} menu group`}
-          sx={{
-            mx: 1,
-            borderRadius: 1.5,
-            minHeight: 40,
-            px: mini ? 1.5 : 1.5,
-            justifyContent: mini ? 'center' : 'flex-start',
-            color: isGroupActive
-              ? theme.palette.primary.main
-              : theme.palette.text.secondary,
-            '&:hover': {
-              backgroundColor: alpha(theme.palette.primary.main, 0.06),
-              color: theme.palette.primary.main,
-            },
-          }}
-        >
-          <ListItemIcon
-            sx={{
-              minWidth: mini ? 0 : 36,
-              color: 'inherit',
-              justifyContent: 'center',
-            }}
-          >
-            {group.icon}
-          </ListItemIcon>
-          {!mini && (
-            <>
-              <ListItemText
-                primary={group.groupLabel}
-                primaryTypographyProps={{ fontSize: '0.8125rem', fontWeight: 500 }}
-              />
-              {open ? (
-                <ExpandLess sx={{ fontSize: 16 }} />
-              ) : (
-                <ExpandMore sx={{ fontSize: 16 }} />
-              )}
-            </>
-          )}
-        </ListItemButton>
-      </Tooltip>
-
-      {!mini && (
-        <Collapse in={open} timeout="auto" unmountOnExit>
-          <List disablePadding>
-            {group.items.map((item) => (
-              <NavItemRow key={item.path} item={item} />
-            ))}
-          </List>
-        </Collapse>
-      )}
-    </>
-  );
-}
-
-function NavItemRow({ item }: { item: NavItem }) {
-  const theme = useTheme();
-  const location = useLocation();
-  const isActive = location.pathname.startsWith(item.path);
-
-  return (
-    <ListItem disablePadding sx={{ pl: 2 }}>
-      <ListItemButton
-        component={NavLink}
-        to={item.path}
-        aria-current={isActive ? 'page' : undefined}
+  const content = (
+    <ListItemButton
+      component={NavLink}
+      to={item.path}
+      aria-current={isActive ? 'page' : undefined}
+      sx={{
+        borderRadius: 1.5,
+        minHeight: 38,
+        px: mini ? 1.5 : 2,
+        justifyContent: mini ? 'center' : 'flex-start',
+        color: isActive ? '#ffffff' : theme.palette.text.secondary,
+        fontWeight: isActive ? 600 : 500,
+        backgroundColor: isActive ? '#18181b' : 'transparent',
+        mb: 0.5,
+        '&:hover': {
+          backgroundColor: isActive ? '#18181b' : alpha(theme.palette.action.hover, 0.06),
+          color: isActive ? '#ffffff' : theme.palette.text.primary,
+        },
+      }}
+    >
+      <ListItemIcon
         sx={{
-          mx: 1,
-          borderRadius: 1.5,
-          minHeight: 36,
-          px: 1.5,
-          position: 'relative',
-          color: isActive ? theme.palette.primary.main : theme.palette.text.secondary,
-          fontWeight: isActive ? 600 : 400,
-          backgroundColor: isActive
-            ? alpha(theme.palette.primary.main, 0.08)
-            : 'transparent',
-          borderLeft: isActive
-            ? `3px solid ${theme.palette.primary.main}`
-            : '3px solid transparent',
-          '&:hover': {
-            backgroundColor: alpha(theme.palette.primary.main, 0.06),
-            color: theme.palette.primary.main,
-          },
+          minWidth: mini ? 0 : 32,
+          color: 'inherit',
+          justifyContent: 'center',
         }}
       >
-        <ListItemIcon sx={{ minWidth: 28, color: 'inherit' }}>
-          {item.icon}
-        </ListItemIcon>
+        {item.icon}
+      </ListItemIcon>
+      {!mini && (
         <ListItemText
           primary={item.label}
           primaryTypographyProps={{ fontSize: '0.8125rem', fontWeight: 'inherit' }}
         />
-      </ListItemButton>
+      )}
+    </ListItemButton>
+  );
+
+  if (mini) {
+    return (
+      <Tooltip title={item.label} placement="right">
+        <ListItem disablePadding sx={{ display: 'block' }}>
+          {content}
+        </ListItem>
+      </Tooltip>
+    );
+  }
+
+  return (
+    <ListItem disablePadding sx={{ display: 'block' }}>
+      {content}
     </ListItem>
   );
 }
@@ -434,8 +350,15 @@ function NotifPopover({ anchorEl, notifications, onClose, onMarkAllRead }: Notif
                   </Typography>
                 </Box>
                 {!n.read && (
-                  <FiberManualRecord
-                    sx={{ fontSize: 8, color: theme.palette.primary.main, mt: 0.5 }}
+                  <Box
+                    sx={{
+                      width: 8,
+                      height: 8,
+                      borderRadius: '50%',
+                      backgroundColor: theme.palette.primary.main,
+                      mt: 0.75,
+                      flexShrink: 0,
+                    }}
                   />
                 )}
               </Box>
@@ -453,11 +376,9 @@ function NotifPopover({ anchorEl, notifications, onClose, onMarkAllRead }: Notif
 interface SidebarProps {
   mini: boolean;
   role: UserRole;
-  openGroups: Record<string, boolean>;
-  onToggleGroup: (label: string) => void;
 }
 
-function Sidebar({ mini, role, openGroups, onToggleGroup }: SidebarProps) {
+function Sidebar({ mini, role }: SidebarProps) {
   const theme = useTheme();
 
   return (
@@ -478,17 +399,17 @@ function Sidebar({ mini, role, openGroups, onToggleGroup }: SidebarProps) {
           display: 'flex',
           alignItems: 'center',
           px: mini ? 1.5 : 2,
-          gap: 1,
+          gap: 1.5,
           borderBottom: `1px solid ${theme.palette.divider}`,
           flexShrink: 0,
         }}
       >
         <Box
           sx={{
-            width: 28,
-            height: 28,
+            width: 32,
+            height: 32,
             borderRadius: 1,
-            backgroundColor: theme.palette.primary.main,
+            backgroundColor: '#18181b',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -497,21 +418,31 @@ function Sidebar({ mini, role, openGroups, onToggleGroup }: SidebarProps) {
         >
           <Typography
             variant="caption"
-            fontWeight={700}
-            sx={{ color: '#fff', fontSize: '0.625rem', letterSpacing: '0.05em' }}
+            fontWeight={800}
+            sx={{ color: '#fff', fontSize: '0.75rem', letterSpacing: '0.05em' }}
           >
             IS
           </Typography>
         </Box>
         {!mini && (
-          <Typography
-            variant="subtitle2"
-            fontWeight={700}
-            noWrap
-            sx={{ color: theme.palette.text.primary }}
-          >
-            Infoservices
-          </Typography>
+          <Box sx={{ minWidth: 0 }}>
+            <Typography
+              variant="subtitle2"
+              fontWeight={700}
+              noWrap
+              sx={{ color: theme.palette.text.primary, lineHeight: 1.2 }}
+            >
+              Infoservices
+            </Typography>
+            <Typography
+              variant="caption"
+              color="text.secondary"
+              noWrap
+              sx={{ fontSize: '0.6875rem', display: 'block', mt: 0.25 }}
+            >
+              Invoice Platform
+            </Typography>
+          </Box>
         )}
       </Box>
 
@@ -519,20 +450,41 @@ function Sidebar({ mini, role, openGroups, onToggleGroup }: SidebarProps) {
       <Box
         component="nav"
         aria-label="Main navigation"
-        sx={{ flex: 1, overflowY: 'auto', py: 1 }}
+        sx={{ flex: 1, overflowY: 'auto', px: mini ? 0.5 : 1, py: 2 }}
       >
-        <List disablePadding>
-          {NAV_GROUPS.map((group) => (
-            <NavGroupRow
-              key={group.groupLabel}
-              group={group}
-              mini={mini}
-              role={role}
-              open={openGroups[group.groupLabel] ?? false}
-              onToggle={() => onToggleGroup(group.groupLabel)}
-            />
-          ))}
-        </List>
+        {NAV_SECTIONS.map((section) => {
+          const visibleItems = section.items.filter(
+            (item) => !item.roles || item.roles.includes(role)
+          );
+          if (visibleItems.length === 0) return null;
+
+          return (
+            <Box key={section.sectionLabel} sx={{ mb: 2 }}>
+              {!mini && (
+                <Typography
+                  variant="overline"
+                  sx={{
+                    px: 2,
+                    py: 0.5,
+                    display: 'block',
+                    color: theme.palette.text.secondary,
+                    fontWeight: 600,
+                    fontSize: '0.6875rem',
+                    letterSpacing: '0.08em',
+                    opacity: 0.75,
+                  }}
+                >
+                  {section.sectionLabel}
+                </Typography>
+              )}
+              <List disablePadding>
+                {visibleItems.map((item) => (
+                  <NavItemRow key={item.path} item={item} mini={mini} />
+                ))}
+              </List>
+            </Box>
+          );
+        })}
       </Box>
     </Box>
   );
@@ -558,16 +510,10 @@ export function ConsoleLayout({
   const theme = useTheme();
   const navigate = useNavigate();
   const breadcrumbs = useBreadcrumbs();
+  const { mode, toggleMode } = useThemeMode();
 
   // ── Sidebar state ─────────────────────────────────────────────────────────
   const [mini, setMini] = useState(false);
-  const [openGroups, setOpenGroups] = useState<Record<string, boolean>>(() =>
-    Object.fromEntries(NAV_GROUPS.map((g) => [g.groupLabel, true])),
-  );
-
-  const toggleGroup = useCallback((label: string) => {
-    setOpenGroups((prev) => ({ ...prev, [label]: !prev[label] }));
-  }, []);
 
   // ── Notification state ────────────────────────────────────────────────────
   const [notifications, setNotifications] = useState<Notification[]>(notifProp);
@@ -633,8 +579,6 @@ export function ConsoleLayout({
         <Sidebar
           mini={mini}
           role={user.role}
-          openGroups={openGroups}
-          onToggleGroup={toggleGroup}
         />
       </Drawer>
 
@@ -725,6 +669,17 @@ export function ConsoleLayout({
             </Paper>
 
             <Box sx={{ flex: 1 }} />
+
+            {/* Theme Toggle */}
+            <Tooltip title={mode === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}>
+              <IconButton
+                size="small"
+                onClick={toggleMode}
+                sx={{ color: theme.palette.text.secondary }}
+              >
+                {mode === 'dark' ? <LightModeOutlined fontSize="small" /> : <DarkModeOutlined fontSize="small" />}
+              </IconButton>
+            </Tooltip>
 
             {/* Notification bell */}
             <Tooltip title="Notifications">
