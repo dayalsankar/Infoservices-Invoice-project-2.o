@@ -19,6 +19,10 @@ import {
 } from '@mui/icons-material';
 import { ConsoleLayout, AuthLayout } from './layouts';
 import type { CurrentUser } from './types/auth';
+import CompaniesPage    from './pages/CompaniesPage';
+import ClientsPage      from './pages/ClientsPage';
+import ConsultantsPage  from './pages/ConsultantsPage';
+import AssignmentsPage  from './pages/AssignmentsPage';
 
 // ─── Mock data ────────────────────────────────────────────────────────────────
 
@@ -318,10 +322,10 @@ export default function App() {
         >
           <Route index element={<Navigate to="/dashboard" replace />} />
           <Route path="dashboard"           element={<DashboardPage />} />
-          <Route path="master/companies"    element={<PlaceholderPage title="Companies"   icon={pages.Companies.icon}   description={pages.Companies.desc}   />} />
-          <Route path="master/clients"      element={<PlaceholderPage title="Clients"     icon={pages.Clients.icon}     description={pages.Clients.desc}     />} />
-          <Route path="master/consultants"  element={<PlaceholderPage title="Consultants" icon={pages.Consultants.icon} description={pages.Consultants.desc} />} />
-          <Route path="master/assignments"  element={<PlaceholderPage title="Assignments" icon={pages.Assignments.icon} description={pages.Assignments.desc} />} />
+          <Route path="master/companies"    element={<CompaniesPage />} />
+          <Route path="master/clients"      element={<ClientsPage />} />
+          <Route path="master/consultants"  element={<ConsultantsPage />} />
+          <Route path="master/assignments"  element={<AssignmentsPage />} />
           <Route path="timesheets"          element={<PlaceholderPage title="Timesheets"  icon={pages.Timesheets.icon}  description={pages.Timesheets.desc}  />} />
           <Route path="invoices"            element={<PlaceholderPage title="Invoices"    icon={pages.Invoices.icon}    description={pages.Invoices.desc}    />} />
           <Route path="payments"            element={<PlaceholderPage title="Payments"    icon={pages.Payments.icon}    description={pages.Payments.desc}    />} />

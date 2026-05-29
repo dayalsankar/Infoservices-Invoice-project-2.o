@@ -63,8 +63,8 @@ import {
   AccountCircleOutlined,
   SwapHorizOutlined,
   LogoutOutlined,
-  CheckCircleOutline,
-  ErrorOutline,
+  CheckCircleOutlined as CheckCircleOutline,
+  ErrorOutlineOutlined as ErrorOutline,
   InfoOutlined,
 } from '@mui/icons-material';
 import type { UserRole, CurrentUser } from '../types/auth';
