@@ -3,12 +3,45 @@
  *  Inherits from dashboard/master-data/timesheets/invoices/approvals
  * ════════════════════════════════════════════════════════════════════ */
 
+/* ── Page-level scroll (Option C) — natural full-page scroll ─────────── */
+/* Override the inherited .main { overflow: hidden } from dashboard.css */
+.pay-main {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+/* Topbar stays pinned at top while body scrolls underneath */
+.pay-main .pay-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+}
+/* Panel no longer needs its own scroll — main handles it */
+.pay-main .pay-panel {
+  flex: 0 0 auto;
+  overflow-y: visible;
+  min-height: 0;
+}
+
 /* ── Topbar (scoped to .pay-topbar) ───────────────────────────────────── */
 .pay-topbar { display: flex; align-items: center; gap: 12px; flex-wrap: nowrap; }
 .pay-topbar .topbar__actions { display: flex; align-items: center; gap: 8px; flex-wrap: nowrap; flex-shrink: 0; }
 .pay-topbar .btn, .pay-topbar .period-picker, .pay-topbar .currency-toggle, .pay-topbar .topbar__search {
   height: 38px; box-sizing: border-box; display: inline-flex; align-items: center;
 }
+.pay-topbar .topbar__search { outline: none; transition: border-color .15s, box-shadow .15s; }
+.pay-topbar .topbar__search:focus-within {
+  border-color: var(--brand-azure);
+  box-shadow: 0 0 0 3px rgba(59, 130, 196, .18);
+  outline: none;
+}
+.pay-topbar .topbar__search input {
+  outline: none; border: none; background: transparent;
+  font-family: var(--font-body); font-size: 13px; width: 100%;
+}
+.pay-topbar .topbar__search input::placeholder { color: var(--text-secondary); }
+.pay-topbar .period-picker__btn[disabled] { opacity: .35; cursor: not-allowed; }
 
 /* ── Overdue banner ───────────────────────────────────────────────────── */
 .pay-overdue-banner {
@@ -67,18 +100,18 @@
 
 /* ── Analytics row ────────────────────────────────────────────────────── */
 .pay-analytics {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 18px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
   padding: 0 36px;
-  margin-top: 20px;
+  margin-top: 14px;
 }
 .pay-chart-card {
   background: var(--white); border: 1px solid var(--border); border-radius: 14px;
-  padding: 18px 20px; box-shadow: 0 1px 2px rgba(26, 31, 94, .04);
+  padding: 14px 18px; box-shadow: 0 1px 2px rgba(26, 31, 94, .04);
   display: flex; flex-direction: column;
 }
 .pay-chart-card__head {
   display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 .pay-chart-card__title {
   font-size: 14px; font-weight: 600; color: var(--brand-navy); margin: 0 0 2px;
@@ -99,14 +132,15 @@
   box-shadow: 0 1px 2px rgba(26, 31, 94, .08);
 }
 .pay-chart-card__body {
-  flex: 1; min-height: 220px; position: relative;
+  flex: 1; min-height: 160px; max-height: 200px; position: relative;
 }
-.pay-chart-card__body--split { min-height: 160px; }
+.pay-chart-card__body--split { min-height: 130px; max-height: 160px; }
 
 /* Aging list below bar chart */
 .pay-aging-list {
-  list-style: none; margin: 12px 0 0; padding: 0;
-  display: flex; flex-direction: column; gap: 8px;
+  list-style: none; margin: 10px 0 0; padding: 0;
+  display: flex; flex-direction: column; gap: 6px;
+  max-height: 110px; overflow-y: auto;
 }
 .pay-aging-row {
   display: grid; grid-template-columns: 80px 1fr 100px 80px;
@@ -157,7 +191,12 @@
 }
 
 /* ── Panel ────────────────────────────────────────────────────────────── */
-.pay-panel { padding: 16px 36px 60px; }
+.pay-panel {
+  padding: 16px 36px 60px;
+  flex: 1 1 auto;
+  overflow-y: auto;
+  min-height: 0;
+}
 
 /* ── Payment Table ────────────────────────────────────────────────────── */
 .pay-table {
@@ -166,9 +205,9 @@
 }
 .pay-table__head, .pay-row {
   display: grid;
-  grid-template-columns: 32px 110px 1fr 130px 110px 110px 90px 100px 80px 180px;
+  grid-template-columns: 36px 110px 1fr 130px 110px 110px 90px 100px 80px 220px;
   gap: 10px; padding: 12px 18px 12px 22px;
-  min-width: 1180px;
+  min-width: 1240px;
 }
 .pay-table__head {
   background: var(--canvas); border-bottom: 1px solid var(--border);
@@ -209,6 +248,30 @@
 .pay-row__check {
   width: 18px; height: 18px; border: 1.5px solid var(--border); border-radius: 4px;
   background: var(--white); cursor: pointer; appearance: none; position: relative;
+  justify-self: center;
+}
+.pay-table__head > :first-child {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.pay-table__head > :first-child::before {
+  content: '';
+  width: 18px; height: 18px;
+  border: 1.5px solid var(--border); border-radius: 4px;
+  background: var(--white);
+  display: inline-block;
+}
+
+/* Warning button variant (missing from base) */
+.btn--warning {
+  background: linear-gradient(135deg, var(--warning), #d97706);
+  color: var(--white);
+  border: none;
+}
+.btn--warning:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(245, 158, 11, .35);
 }
 .pay-row__check:checked {
   background: var(--brand-royal); border-color: var(--brand-royal);
@@ -633,6 +696,19 @@
 
 /* ── Tab badges variants we use ───────────────────────────────────────── */
 .md-tab__badge--success { background: rgba(16, 185, 129, .14); color: #047857; }
+
+/* ── Currency-aware amounts ───────────────────────────────────────────── */
+.amount-primary {
+  display: inline-block;
+  font-weight: 600; color: inherit;
+  font-variant-numeric: tabular-nums;
+}
+.amount-secondary {
+  display: block;
+  font-size: 10px; font-weight: 400; color: var(--text-secondary);
+  margin-top: 1px;
+  font-variant-numeric: tabular-nums;
+}
 
 /* ── Empty states ─────────────────────────────────────────────────────── */
 .pay-empty {

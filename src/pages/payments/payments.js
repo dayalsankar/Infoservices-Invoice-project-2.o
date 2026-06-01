@@ -237,6 +237,16 @@ const AGING = [
   { label: '>90 days', amount: 40000, count: 1, color: 'danger' },
 ];
 
+// ── Periods (for topbar arrow navigation) ────────────────────────────
+const PERIODS = [
+  { label: 'Jan 2026', month: 0, year: 2026 },
+  { label: 'Feb 2026', month: 1, year: 2026 },
+  { label: 'Mar 2026', month: 2, year: 2026 },
+  { label: 'Apr 2026', month: 3, year: 2026 },
+  { label: 'May 2026', month: 4, year: 2026 },
+  { label: 'June 2026', month: 5, year: 2026 },
+];
+
 // ── State ────────────────────────────────────────────────────────────
 const state = {
   activeTab: 'all',
@@ -246,6 +256,8 @@ const state = {
   sortBy: 'status',
   currency: 'INR',
   cashflowRange: '6m',
+  periodIdx: 5,        // start on June 2026
+  periodFilter: false, // true = filter by invDate month
 };
 
 // ── Formatters ───────────────────────────────────────────────────────
@@ -256,6 +268,25 @@ const fmtINRShort = (n) => {
   return '₹' + Math.round(n).toLocaleString('en-IN');
 };
 const fmtUSD = (n) => '$' + n.toLocaleString('en-US', { maximumFractionDigits: 2 });
+const fmtUSDShort = (n) => {
+  if (n >= 1000000) return '$' + (n / 1000000).toFixed(2).replace(/\.?0+$/, '') + 'M';
+  if (n >= 1000) return '$' + (n / 1000).toFixed(1).replace(/\.?0+$/, '') + 'K';
+  return '$' + Math.round(n).toLocaleString('en-US');
+};
+
+// Currency-aware short formatter — reads state.currency
+function fmtShort(inrAmount, cur) {
+  cur = cur || state.currency || 'INR';
+  if (cur === 'USD') return fmtUSDShort(inrAmount / USD_RATE);
+  return fmtINRShort(inrAmount);
+}
+
+// Full amount formatter (no short form)
+function fmtFull(inrAmount, cur) {
+  cur = cur || state.currency || 'INR';
+  if (cur === 'USD') return fmtUSD(Math.round(inrAmount / USD_RATE));
+  return fmtINR(inrAmount);
+}
 const fmtDate = (d) => {
   if (!d) return '—';
   return new Date(d).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
@@ -269,12 +300,34 @@ function renderPanel() {
   panel.innerHTML = '';
 
   let items = filterByTab(PAYMENTS);
-  items = applySort(applySearch(items));
+  items = applyPeriodFilter(applySort(applySearch(items)));
 
   if (state.view === 'client') return renderClientView(panel);
   if (!items.length) return panel.appendChild(makeEmpty());
 
   renderTable(panel, items);
+}
+
+function updatePeriodLabel() {
+  const p = PERIODS[state.periodIdx];
+  if (!p) return;
+  const label = document.getElementById('period-label');
+  if (label) label.textContent = p.label;
+  const prev = document.getElementById('period-prev');
+  const next = document.getElementById('period-next');
+  if (prev) prev.disabled = state.periodIdx === 0;
+  if (next) next.disabled = state.periodIdx === PERIODS.length - 1;
+}
+
+function applyPeriodFilter(items) {
+  if (!state.periodFilter) return items;
+  const p = PERIODS[state.periodIdx];
+  return items.filter(it => {
+    const d = it.invDate || it.payDate || it.dueDate;
+    if (!d) return false;
+    const dt = new Date(d);
+    return dt.getMonth() === p.month && dt.getFullYear() === p.year;
+  });
 }
 
 function filterByTab(items) {
@@ -358,9 +411,9 @@ function makeRow(p) {
       <p class="pay-row__client-name">${c?.name || '—'}</p>
       <p class="pay-row__client-sub">${p.consultant}</p>
     </div>
-    <span class="pay-row__amount">${fmtINRShort(p.amount)}</span>
-    <span class="pay-row__paid ${p.paid === 0 ? 'pay-row__amount-muted' : ''}">${p.paid > 0 ? fmtINRShort(p.paid) : '—'}</span>
-    <span class="pay-row__balance ${balanceClass}">${fmtINRShort(p.balance)}</span>
+    <span class="pay-row__amount" data-inr="${p.amount}">${fmtShort(p.amount)}</span>
+    <span class="pay-row__paid ${p.paid === 0 ? 'pay-row__amount-muted' : ''}" data-inr="${p.paid}">${p.paid > 0 ? fmtShort(p.paid) : '—'}</span>
+    <span class="pay-row__balance ${balanceClass}" data-inr="${p.balance}">${fmtShort(p.balance)}</span>
     <span class="pay-row__date">${fmtDate(p.dueDate).split(' ').slice(0, 2).join(' ')}</span>
     <span class="pay-row__date">${p.payDate ? fmtDate(p.payDate).split(' ').slice(0, 2).join(' ') : '—'}</span>
     <span class="pay-row__mode">${p.mode || '—'}</span>
@@ -547,14 +600,14 @@ function openDrawer(id) {
           <div class="apv-d-grid-cell"><span class="apv-d-grid-label">Tax Type</span><span class="apv-d-grid-val">${p.taxType}</span></div>
         </div>
         <div class="pay-d-fin">
-          <div class="pay-d-fin__row"><span class="pay-d-fin__label">Invoice Amount</span><span class="pay-d-fin__val">${fmtINR(p.amount - p.taxAmount)}</span></div>
-          <div class="pay-d-fin__row"><span class="pay-d-fin__label">Tax (${p.taxType})</span><span class="pay-d-fin__val">${fmtINR(p.taxAmount)}</span></div>
+          <div class="pay-d-fin__row"><span class="pay-d-fin__label">Invoice Amount</span><span class="pay-d-fin__val">${fmtFull(p.amount - p.taxAmount)}</span></div>
+          <div class="pay-d-fin__row"><span class="pay-d-fin__label">Tax (${p.taxType})</span><span class="pay-d-fin__val">${fmtFull(p.taxAmount)}</span></div>
           <div class="pay-d-fin__divider"></div>
-          <div class="pay-d-fin__row"><span class="pay-d-fin__label pay-d-fin__total">Total Due</span><span class="pay-d-fin__val pay-d-fin__total">${fmtINR(p.total)}</span></div>
-          <div class="pay-d-fin__row"><span class="pay-d-fin__label">Amount Paid</span><span class="pay-d-fin__val">${fmtINR(p.paid)}</span></div>
+          <div class="pay-d-fin__row"><span class="pay-d-fin__label pay-d-fin__total">Total Due</span><span class="pay-d-fin__val pay-d-fin__total">${fmtFull(p.total)}</span></div>
+          <div class="pay-d-fin__row"><span class="pay-d-fin__label">Amount Paid</span><span class="pay-d-fin__val">${fmtFull(p.paid)}</span></div>
           <div class="pay-d-fin__divider"></div>
-          <div class="pay-d-fin__row"><span class="pay-d-fin__label pay-d-fin__total">Balance Due</span><span class="pay-d-fin__val pay-d-fin__total">${fmtINR(p.balance)}</span></div>
-          <div class="pay-d-fin__row"><span class="pay-d-fin__label">USD Equivalent</span><span class="pay-d-fin__val">${fmtUSD(p.balance / USD_RATE)}</span></div>
+          <div class="pay-d-fin__row"><span class="pay-d-fin__label pay-d-fin__total">Balance Due</span><span class="pay-d-fin__val pay-d-fin__total">${fmtFull(p.balance)}</span></div>
+          <div class="pay-d-fin__row"><span class="pay-d-fin__label">${state.currency === 'USD' ? 'INR Equivalent' : 'USD Equivalent'}</span><span class="pay-d-fin__val">${state.currency === 'USD' ? fmtINR(p.balance) : fmtUSD(p.balance / USD_RATE)}</span></div>
           ${p.status === 'overdue' ? `<div class="pay-d-fin__divider"></div><div class="pay-d-fin__row"><span class="pay-d-fin__label pay-d-fin__overdue">Days Overdue</span><span class="pay-d-fin__val pay-d-fin__overdue">${p.daysOverdue} days 🔴</span></div>` : ''}
         </div>
       </section>
@@ -637,6 +690,7 @@ function openDrawer(id) {
 
   document.getElementById('drawer-overlay').hidden = false;
   const d = document.getElementById('pay-drawer');
+  d.dataset.openId = id;
   d.setAttribute('aria-hidden', 'false');
   requestAnimationFrame(() => d.classList.add('is-open'));
 
@@ -1366,6 +1420,33 @@ function renderOverdueBanner() {
   document.getElementById('overdue-amount').textContent = fmtINR(overdue.reduce((s, p) => s + p.balance, 0));
 }
 
+// Currency-aware refresh of stats strip + table + open drawer
+const STAT_INR = {
+  'stat-val-collected': 3680000,
+  'stat-val-outstanding': 1145000,
+  'stat-val-overdue': 320000,
+};
+
+function refreshAllAmounts() {
+  const cur = state.currency || 'INR';
+  // Stats strip
+  Object.entries(STAT_INR).forEach(([id, inr]) => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = fmtShort(inr, cur);
+  });
+  // Sub-text on collected card
+  const sub = document.getElementById('stat-sub-collected');
+  if (sub) sub.textContent = cur === 'USD' ? '₹36.8L · June 2026' : '$44,120 · June 2026';
+  // Table rows (re-render with new currency)
+  renderPanel();
+  // Open drawer
+  const drawer = document.getElementById('pay-drawer');
+  if (drawer && drawer.classList.contains('is-open')) {
+    const openId = drawer.dataset.openId;
+    if (openId) openDrawer(openId);
+  }
+}
+
 function syncCrossScreens() {
   try {
     const s = JSON.parse(localStorage.getItem('info-platform-state') || '{}');
@@ -1521,12 +1602,41 @@ function init() {
   document.getElementById('btn-export').addEventListener('click', openExportModal);
   document.getElementById('btn-reconcile').addEventListener('click', openReconciliation);
 
-  // Currency toggle
+  // Currency toggle — converts amounts across stats, table, drawer
   document.querySelectorAll('.currency-toggle__btn').forEach(b => {
     b.addEventListener('click', () => {
       document.querySelectorAll('.currency-toggle__btn').forEach(x => x.classList.toggle('is-active', x === b));
       state.currency = b.dataset.currency;
+      refreshAllAmounts();
     });
+  });
+
+  // Period picker arrows
+  document.getElementById('period-prev').addEventListener('click', () => {
+    if (state.periodIdx > 0) {
+      state.periodIdx--;
+      state.periodFilter = true;
+      updatePeriodLabel();
+      renderPanel();
+      const p = PERIODS[state.periodIdx];
+      toast({ type: 'info', title: `Period: ${p.label}`, subtitle: 'Filtering by invoice month', duration: 2500 });
+    }
+  });
+  document.getElementById('period-next').addEventListener('click', () => {
+    if (state.periodIdx < PERIODS.length - 1) {
+      state.periodIdx++;
+      state.periodFilter = true;
+      updatePeriodLabel();
+      renderPanel();
+      const p = PERIODS[state.periodIdx];
+      toast({ type: 'info', title: `Period: ${p.label}`, subtitle: 'Filtering by invoice month', duration: 2500 });
+    }
+  });
+  document.getElementById('period-label').addEventListener('click', () => {
+    // Click the label to toggle period filter on/off
+    state.periodFilter = !state.periodFilter;
+    renderPanel();
+    toast({ type: 'info', title: state.periodFilter ? 'Period filter ON' : 'Period filter OFF', duration: 2000 });
   });
 
   // Cashflow range tabs
@@ -1597,6 +1707,8 @@ function init() {
   renderCashflow();
   renderAging();
   renderSparkline();
+  updatePeriodLabel();
+  refreshAllAmounts();
   syncCrossScreens();
 
   if (invoiceParam) {
