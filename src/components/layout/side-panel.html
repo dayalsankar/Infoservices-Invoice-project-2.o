@@ -1,0 +1,84 @@
+<!--
+  side-panel.html
+  ─────────────────────────────────────────────────────────────────────────────
+  260px workspace navigation panel. Contains user header, grouped nav, monthly
+  revenue mini-card, recent activity feed, and logout link.
+
+  Composed of:
+    - .panel-user    — greeting, name, role pill
+    - .panel-nav     — grouped vertical nav (uses nav-item.html pattern)
+    - .panel-revenue — navy-to-azure gradient KPI strip
+    - .panel-activity— vertical activity feed (4 items)
+    - .nav-item--logout
+
+  Pair with nav-item.html for individual entries.
+-->
+
+<aside class="side-panel" aria-label="Workspace navigation">
+
+  <header class="panel-user">
+    <p class="panel-user__greet">Good morning <span aria-hidden="true">☀️</span></p>
+    <h2 class="panel-user__name">Priya Sharma</h2>
+    <span class="panel-user__role">
+      <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+      Finance Admin
+    </span>
+  </header>
+
+  <nav class="panel-nav" aria-label="Main navigation">
+    <p class="nav-group__label">MAIN</p>
+    <!-- Insert nav-item.html partials here -->
+
+    <p class="nav-group__label">OPERATIONS</p>
+    <!-- … -->
+
+    <p class="nav-group__label">INTELLIGENCE</p>
+    <!-- … -->
+
+    <p class="nav-group__label">GOVERNANCE</p>
+    <!-- … -->
+  </nav>
+
+  <!-- Monthly revenue mini-card -->
+  <section class="panel-revenue" aria-label="This month revenue">
+    <p class="panel-revenue__label">This Month Revenue</p>
+    <p class="panel-revenue__amount num">₹48,25,000</p>
+    <p class="panel-revenue__delta">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17l9-9M9 8h7v7"/></svg>
+      <span class="num">+14.2%</span>
+      <span class="panel-revenue__delta-label">vs last month</span>
+    </p>
+    <div class="panel-revenue__split">
+      <div>
+        <p class="panel-revenue__split-label">Collected</p>
+        <p class="panel-revenue__split-value num">₹36,80,000</p>
+      </div>
+      <div>
+        <p class="panel-revenue__split-label panel-revenue__split-label--warning">Pending</p>
+        <p class="panel-revenue__split-value panel-revenue__split-value--warning num">₹11,45,000</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recent activity feed -->
+  <section class="panel-activity" aria-label="Recent activity">
+    <p class="panel-activity__title">RECENT ACTIVITY</p>
+    <ul class="activity-list">
+      <li class="activity-item">
+        <span class="activity-item__dot activity-item__dot--success">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+        </span>
+        <div>
+          <p class="activity-item__title">Invoice #INV-2401 Approved</p>
+          <p class="activity-item__meta">2 min ago · Accenture India</p>
+        </div>
+      </li>
+      <!-- Other activity items follow the same pattern with --warning, --info, --danger dot variants -->
+    </ul>
+  </section>
+
+  <a class="nav-item nav-item--logout" href="/logout">
+    <svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5M21 12H9"/></svg>
+    <span class="nav-item__label">Logout</span>
+  </a>
+</aside>

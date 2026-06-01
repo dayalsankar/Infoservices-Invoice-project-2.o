@@ -1,0 +1,44 @@
+<!--
+  nav-item.html
+  ─────────────────────────────────────────────────────────────────────────────
+  Single side-panel navigation item. Lives inside .panel-nav.
+
+  Variants:
+    .nav-item             — default
+    .nav-item.is-active   — gradient azure-50→azure-100 bg, royal text + 3px left bar
+    .nav-item--logout     — bottom, neutral; hover turns danger-bg
+    .nav-item__badge--danger / --warning — pending count pill
+
+  Wire up:
+    - dashboard.js bindPanelNav() toggles .is-active and updates breadcrumb
+-->
+
+<!-- Default state -->
+<a class="nav-item" href="/invoices" data-nav="invoices">
+  <svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+    <path d="M14 2v6h6"/>
+  </svg>
+  <span class="nav-item__label">Invoices</span>
+  <span class="nav-item__badge nav-item__badge--danger">5</span>
+</a>
+
+<!-- Active state -->
+<a class="nav-item is-active" href="/dashboard" data-nav="dashboard">
+  <svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3" y="3" width="7" height="7" rx="1.5"/>
+    <rect x="14" y="3" width="7" height="7" rx="1.5"/>
+    <rect x="3" y="14" width="7" height="7" rx="1.5"/>
+    <rect x="14" y="14" width="7" height="7" rx="1.5"/>
+  </svg>
+  <span class="nav-item__label">Dashboard</span>
+</a>
+
+<!-- Logout (bottom of panel) -->
+<a class="nav-item nav-item--logout" href="/logout">
+  <svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+    <path d="M16 17l5-5-5-5M21 12H9"/>
+  </svg>
+  <span class="nav-item__label">Logout</span>
+</a>

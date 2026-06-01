@@ -1,0 +1,41 @@
+<!--
+  chart-card.html
+  ─────────────────────────────────────────────────────────────────────────────
+  Generic wrapper for any Chart.js visualization.
+
+  Slots:
+    1. Card head — title + subtitle + optional pill-tabs OR link on the right
+    2. Optional .card__legend — manual legend dots (when chart legend is off)
+    3. .chart-wrap--{sm,lg} — fixed-height canvas container (Chart.js
+       requires its parent to have an explicit height for responsive rendering)
+
+  dashboard.js binds:
+    - [data-range] pill-tab clicks → swap dataset in revenueChart
+    - All charts use Chart.js global defaults (Poppins, navy tooltip)
+-->
+
+<article class="card chart-card">
+
+  <header class="card__head">
+    <div>
+      <h3 class="card__title">Revenue Overview</h3>
+      <p class="card__subtitle">Cashflow &amp; Invoice summary</p>
+    </div>
+    <div class="pill-tabs" role="tablist" aria-label="Range">
+      <button class="pill-tab" role="tab" aria-selected="false" data-range="3M">3M</button>
+      <button class="pill-tab is-active" role="tab" aria-selected="true" data-range="6M">6M</button>
+      <button class="pill-tab" role="tab" aria-selected="false" data-range="1Y">1Y</button>
+    </div>
+  </header>
+
+  <!-- Custom legend (chart's built-in is disabled in dashboard.js) -->
+  <div class="card__legend">
+    <span class="legend-dot legend-dot--royal"></span>   Revenue (₹L)
+    <span class="legend-dot legend-dot--success"></span> Collected (₹L)
+    <span class="legend-dot legend-dot--warning"></span> Outstanding (₹L)
+  </div>
+
+  <div class="chart-wrap chart-wrap--lg">
+    <canvas id="chart-revenue" aria-label="Revenue overview chart" role="img"></canvas>
+  </div>
+</article>

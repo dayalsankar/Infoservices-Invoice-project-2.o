@@ -1,0 +1,199 @@
+/* ============================================================================
+ * globals.css — reset + base + utilities. Depends on design-system.css tokens.
+ * ========================================================================== */
+
+@import './design-system.css';
+
+/* ── Reset ────────────────────────────────────────────────────────────── */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body { margin: 0; padding: 0; height: 100%; }
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-size-adjust: 100%;
+  scrollbar-gutter: stable;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  line-height: var(--lh-normal);
+  font-weight: var(--fw-regular);
+  color: var(--text-primary);
+  background-color: var(--canvas);
+  overflow: hidden; /* app shell scrolls inside */
+}
+
+/* ── Typography baseline ─────────────────────────────────────────────── */
+
+/* `:where()` keeps these zero-specificity so any class-based color override
+   (e.g. `.hero__greeting { color: white }`) wins automatically. Without this,
+   white-on-gradient headings inherit the default dark text and disappear. */
+:where(h1, h2, h3, h4, h5, h6) {
+  margin: 0;
+  font-family: var(--font-body);
+  font-weight: var(--fw-semibold);
+  line-height: var(--lh-tight);
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+h1, h2, h3, h4, h5, h6 { margin: 0; }
+h1 { font-size: var(--fs-5xl); }
+h2 { font-size: var(--fs-4xl); }
+h3 { font-size: var(--fs-3xl); }
+h4 { font-size: var(--fs-2xl); }
+h5 { font-size: var(--fs-xl); }
+h6 { font-size: var(--fs-lg); }
+
+p { margin: 0; line-height: var(--lh-relaxed); }
+
+a {
+  color: var(--text-link);
+  text-decoration: none;
+  transition: color var(--transition-fast) var(--ease-standard);
+}
+a:hover { color: var(--royal-600); }
+
+code, kbd, samp, pre {
+  font-family: var(--font-mono);
+  font-feature-settings: 'tnum';
+  font-size: 0.95em;
+}
+
+/* ── Forms baseline ──────────────────────────────────────────────────── */
+
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+}
+
+input, select, textarea {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--white);
+  padding: 8px 12px;
+  transition: border-color var(--transition-fast) var(--ease-standard),
+              box-shadow  var(--transition-fast) var(--ease-standard);
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--brand-royal);
+  box-shadow: var(--shadow-focus);
+}
+
+::placeholder { color: var(--text-tertiary); opacity: 1; }
+
+/* ── Focus ring ──────────────────────────────────────────────────────── */
+
+:focus { outline: none; }
+
+:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+  border-radius: var(--radius-sm);
+}
+
+/* ── Scrollbars — slim, navy-tinted ─────────────────────────────────── */
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--border-default);
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover { background: var(--border-strong); }
+
+/* ── Lists ───────────────────────────────────────────────────────────── */
+
+/* Reset browser default <ul>/<ol> bullets + indentation in any layout
+   container. Icon rail lives in <aside>, side panel in <aside>, topbar in
+   <header> — all need the reset, not just <nav>. */
+nav ul, nav ol,
+aside ul, aside ol,
+header ul, header ol,
+main ul, main ol { list-style: none; margin: 0; padding: 0; }
+
+/* ── Motion preferences ──────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration:   0.01ms !important;
+    transition-duration:  0.01ms !important;
+  }
+}
+
+/* ── Utilities ──────────────────────────────────────────────────────── */
+
+/* Numbers use Poppins (same as body) with tabular figures so columns still
+   align vertically, but without JetBrains Mono's slashed zero — looks wrong
+   in a financial context. Spec-driven (Fix 9 + 10). */
+.num,
+.tabular-nums {
+  font-family: var(--font-body);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+  letter-spacing: 0;
+}
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100%; left: var(--space-2);
+  z-index: 9999;
+  padding: var(--space-2) var(--space-4);
+  background: var(--brand-royal);
+  color: var(--white);
+  font-weight: var(--fw-medium);
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  transition: top var(--transition-fast) var(--ease-standard);
+}
+.skip-link:focus { top: 0; }
+
+/* ── Skeleton shimmer ────────────────────────────────────────────────── */
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--bg-muted) 0%,
+    #f6f8fc 50%,
+    var(--bg-muted) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.4s linear infinite;
+  border-radius: var(--radius-sm);
+}
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}

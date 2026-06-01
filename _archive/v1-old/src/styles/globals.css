@@ -1,0 +1,67 @@
+/*
+ * globals.css
+ *
+ * Minimal global styles. MUI's <CssBaseline /> handles the bulk of the reset
+ * (margin, padding, box-sizing, font smoothing). This file binds the font
+ * CSS variables and adds a couple of utility classes.
+ */
+
+:root {
+  --font-inter:   'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono:    'JetBrains Mono', 'Fira Code', ui-monospace, 'SF Mono', Menlo, monospace;
+  --body-font:    var(--font-inter);
+  --heading-font: var(--font-inter);
+  --mono-font:    var(--font-mono);
+}
+
+html {
+  scrollbar-gutter: stable;
+}
+
+body {
+  font-family: var(--body-font);
+  /* Inter OpenType features for crisper rendering at small sizes */
+  font-feature-settings: 'cv11', 'ss01', 'ss03';
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--heading-font);
+}
+
+code, kbd, samp, pre {
+  font-family: var(--mono-font);
+  font-feature-settings: 'tnum';
+}
+
+nav ul, nav ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Universal keyboard focus ring — brand blue, always visible */
+:focus-visible {
+  outline: 2px solid #2563EB;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+/* Tabular figures for any inline number not wrapped in an MUI component */
+.tabular-nums,
+.mono-num {
+  font-family: var(--mono-font);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+  letter-spacing: 0;
+}
+
+/* Truncate with ellipsis — used on address / long-string cells */
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

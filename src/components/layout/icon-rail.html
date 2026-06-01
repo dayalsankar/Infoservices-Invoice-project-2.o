@@ -1,0 +1,62 @@
+<!--
+  icon-rail.html
+  ─────────────────────────────────────────────────────────────────────────────
+  Fixed 72px left rail with logo, three grouped icon sections, and user avatar.
+
+  Requires:
+    - ../../styles/design-system.css  (tokens)
+    - ../../pages/dashboard/dashboard.css  (.icon-rail, .rail-item, etc.)
+    - Vanilla JS to toggle .is-active on click (see dashboard.js bindRailItems)
+
+  Slots to customize:
+    - Replace inner <svg>s with your preferred icon set (lucide / heroicons).
+    - Add .has-dot class for any rail-item with a pending notification.
+    - Set initials inside .rail-avatar span.
+-->
+
+<aside class="icon-rail" aria-label="Primary navigation rail">
+
+  <a class="rail-logo" href="/" aria-label="INFO Services home">
+    <span class="rail-logo__mark">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="4" y="4" width="16" height="16" rx="3" />
+        <path d="M9 9v6M15 9v6M9 12h6" />
+      </svg>
+    </span>
+  </a>
+
+  <!-- Group 1 -->
+  <ul class="rail-group" role="menu">
+    <li role="none">
+      <button class="rail-item is-active" aria-label="Dashboard" role="menuitem">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="7" height="7" rx="1.5"/>
+          <rect x="14" y="3" width="7" height="7" rx="1.5"/>
+          <rect x="3" y="14" width="7" height="7" rx="1.5"/>
+          <rect x="14" y="14" width="7" height="7" rx="1.5"/>
+        </svg>
+      </button>
+    </li>
+    <!-- …add more rail-items per group… -->
+  </ul>
+
+  <span class="rail-divider" role="separator"></span>
+
+  <!-- Group 2 example: badge dot for pending items -->
+  <ul class="rail-group" role="menu">
+    <li role="none">
+      <button class="rail-item has-dot" aria-label="Approvals (3 pending)" role="menuitem">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 11.1V12a10 10 0 1 1-5.93-9.14"/>
+          <path d="M22 4 12 14.01l-3-3"/>
+        </svg>
+      </button>
+    </li>
+  </ul>
+
+  <div class="rail-spacer"></div>
+
+  <button class="rail-avatar" aria-label="Account menu">
+    <span>FA</span>
+  </button>
+</aside>

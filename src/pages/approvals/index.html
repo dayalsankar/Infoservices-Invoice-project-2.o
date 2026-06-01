@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#1a1f5e" />
+  <title>Approvals · INFO Services Invoicing Platform</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../../styles/design-system.css" />
+  <link rel="stylesheet" href="../../styles/globals.css" />
+  <link rel="stylesheet" href="../dashboard/dashboard.css" />
+  <link rel="stylesheet" href="../master-data/master-data.css" />
+  <link rel="stylesheet" href="../timesheets/timesheets.css" />
+  <link rel="stylesheet" href="../invoices/invoices.css" />
+  <link rel="stylesheet" href="./approvals.css" />
+</head>
+<body class="is-loading">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="app">
+
+    <!-- ── ICON RAIL ─────────────────────────────────────────────────────── -->
+    <aside class="icon-rail" aria-label="Primary navigation rail">
+      <a class="rail-logo" href="../dashboard/" aria-label="INFO Services home"><span class="rail-logo__mark">IS</span></a>
+      <ul class="rail-group" role="menu">
+        <li role="none"><a class="rail-item" href="../dashboard/" aria-label="Dashboard" role="menuitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></a></li>
+        <li role="none"><a class="rail-item" href="../master-data/" aria-label="Master Data" role="menuitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v6c0 1.7 4 3 9 3s9-1.3 9-3V5M3 11v6c0 1.7 4 3 9 3s9-1.3 9-3v-6"/></svg></a></li>
+        <li role="none"><a class="rail-item" href="../timesheets/" aria-label="Timesheets" role="menuitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2.5"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></a></li>
+        <li role="none"><a class="rail-item" href="../invoices/" aria-label="Invoices" role="menuitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></a></li>
+      </ul>
+      <span class="rail-divider" role="separator"></span>
+      <ul class="rail-group" role="menu">
+        <li role="none"><a class="rail-item is-active has-dot" href="./" aria-label="Approvals" role="menuitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.1V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg></a></li>
+        <li role="none"><a class="rail-item" href="../payments/" aria-label="Payments" role="menuitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2.5"/><path d="M2 10h20"/></svg></a></li>
+        <li role="none"><button class="rail-item" aria-label="Reports" role="menuitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 16V12M12 16V8M17 16v-6"/></svg></button></li>
+        <li role="none"><button class="rail-item has-dot" aria-label="Notifications" role="menuitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></button></li>
+      </ul>
+      <span class="rail-divider" role="separator"></span>
+      <ul class="rail-group" role="menu">
+        <li role="none"><button class="rail-item" aria-label="Audit" role="menuitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></button></li>
+        <li role="none"><button class="rail-item" aria-label="Settings" role="menuitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82"/></svg></button></li>
+      </ul>
+      <div class="rail-spacer"></div>
+      <button class="rail-avatar" aria-label="Account menu"><span>FA</span></button>
+    </aside>
+
+    <!-- ── SIDE PANEL ────────────────────────────────────────────────────── -->
+    <aside class="side-panel" aria-label="Workspace navigation">
+      <header class="panel-user">
+        <p class="panel-user__greet">Good morning <span aria-hidden="true">☀️</span></p>
+        <h2 class="panel-user__name">Rajesh Kumar</h2>
+        <span class="panel-user__role"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg> Signing Authority</span>
+      </header>
+      <nav class="panel-nav" aria-label="Main navigation">
+        <p class="nav-group__label">MAIN</p>
+        <a class="nav-item" href="../dashboard/" data-nav="dashboard"><svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span class="nav-item__label">Dashboard</span></a>
+        <a class="nav-item" href="../master-data/" data-nav="master"><svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v6c0 1.7 4 3 9 3s9-1.3 9-3V5M3 11v6c0 1.7 4 3 9 3s9-1.3 9-3v-6"/></svg><span class="nav-item__label">Master Data</span></a>
+        <p class="nav-group__label">OPERATIONS</p>
+        <a class="nav-item" href="../timesheets/" data-nav="timesheets"><svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2.5"/><path d="M3 9h18M8 2v4M16 2v4"/></svg><span class="nav-item__label">Timesheets</span><span class="nav-item__badge nav-item__badge--warning" id="nav-badge-ts">12</span></a>
+        <a class="nav-item" href="../invoices/" data-nav="invoices"><svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg><span class="nav-item__label">Invoices</span><span class="nav-item__badge nav-item__badge--danger" id="nav-badge-inv">5</span></a>
+        <a class="nav-item is-active" href="./" data-nav="approvals"><svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.1V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg><span class="nav-item__label">Approvals</span><span class="nav-item__badge nav-item__badge--danger" id="nav-badge-apv">18</span></a>
+        <a class="nav-item" href="../payments/" data-nav="payments"><svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2.5"/><path d="M2 10h20"/></svg><span class="nav-item__label">Payments</span><span class="nav-item__badge nav-item__badge--danger">2</span></a>
+        <p class="nav-group__label">INTELLIGENCE</p>
+        <a class="nav-item" href="#" data-nav="reports"><svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 16V12M12 16V8M17 16v-6"/></svg><span class="nav-item__label">Reports &amp; Analytics</span></a>
+        <a class="nav-item" href="#" data-nav="notifications"><svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg><span class="nav-item__label">Notifications</span><span class="nav-item__badge nav-item__badge--danger" id="nav-badge-notif">7</span></a>
+        <p class="nav-group__label">GOVERNANCE</p>
+        <a class="nav-item" href="#" data-nav="audit"><svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span class="nav-item__label">Audit &amp; Compliance</span></a>
+        <a class="nav-item" href="#" data-nav="settings"><svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/></svg><span class="nav-item__label">System Config</span></a>
+      </nav>
+      <a class="nav-item nav-item--logout" href="#"><svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5M21 12H9"/></svg><span class="nav-item__label">Logout</span></a>
+    </aside>
+
+    <!-- ── MAIN ──────────────────────────────────────────────────────────── -->
+    <main class="main" id="main-content" tabindex="-1">
+
+      <!-- Topbar -->
+      <header class="topbar apv-topbar">
+        <div class="topbar__title">
+          <h1 class="topbar__heading">Approval Management</h1>
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="../dashboard/">INFO Services</a>
+            <span class="breadcrumb__sep" aria-hidden="true">·</span>
+            <span aria-current="page">Approval Management</span>
+          </nav>
+        </div>
+        <div class="topbar__actions">
+          <label class="topbar__search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+            <input id="apv-search" type="search" placeholder="Search approvals, invoices, requests…" aria-label="Search" />
+          </label>
+          <button class="btn btn--ghost" id="btn-filter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg> Filter</button>
+          <div class="apv-sort">
+            <label for="apv-sort" class="sr-only">Sort</label>
+            <select id="apv-sort" class="apv-sort__select">
+              <option value="date">Sort: By Date</option>
+              <option value="priority">Sort: By Priority</option>
+              <option value="type">Sort: By Type</option>
+              <option value="amount">Sort: By Amount</option>
+            </select>
+          </div>
+          <button class="btn btn--ghost" id="btn-export"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5M12 15V3"/></svg> Export</button>
+          <button class="btn btn--ghost" id="btn-activity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg> Activity</button>
+          <button class="btn btn--primary" id="btn-settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51"/></svg> Settings</button>
+        </div>
+      </header>
+
+      <!-- Active filter chips strip (renders below topbar when filters applied) -->
+      <div class="apv-filter-active-chips" id="apv-filter-active-chips"></div>
+
+      <!-- SLA breach banner -->
+      <div class="sla-banner" id="sla-banner" hidden>
+        <span class="sla-banner__dot" aria-hidden="true"></span>
+        <p class="sla-banner__text"><strong id="sla-breach-count">0</strong> approval(s) have exceeded SLA. Immediate action required.</p>
+        <button class="btn btn--danger btn--sm" id="sla-review">Review Now</button>
+      </div>
+
+      <!-- Sub-tabs -->
+      <nav class="md-tabs ts-tabs inv-tabs apv-tabs" role="tablist" aria-label="Approval categories">
+        <button class="md-tab is-active" role="tab" data-tab="all" aria-selected="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>
+          <span>All Approvals</span><span class="md-tab__badge" id="tab-count-all">18</span>
+        </button>
+        <button class="md-tab" role="tab" data-tab="invoice" aria-selected="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M9 12l2 2 4-4"/></svg>
+          <span>Invoice Approvals</span><span class="md-tab__badge md-tab__badge--warning md-tab__badge--pulse" id="tab-count-invoice">3</span>
+        </button>
+        <button class="md-tab" role="tab" data-tab="setup" aria-selected="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l8-4 8 4v14"/></svg>
+          <span>Setup Approvals</span><span class="md-tab__badge md-tab__badge--royal" id="tab-count-setup">8</span>
+        </button>
+        <button class="md-tab" role="tab" data-tab="change" aria-selected="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4z"/></svg>
+          <span>Change Requests</span><span class="md-tab__badge md-tab__badge--azure" id="tab-count-change">4</span>
+        </button>
+        <button class="md-tab" role="tab" data-tab="approved" aria-selected="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+          <span>Approved</span><span class="md-tab__badge md-tab__badge--success" id="tab-count-approved">186</span>
+        </button>
+        <button class="md-tab" role="tab" data-tab="rejected" aria-selected="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6M9 9l6 6"/></svg>
+          <span>Rejected</span><span class="md-tab__badge md-tab__badge--danger" id="tab-count-rejected">12</span>
+        </button>
+      </nav>
+
+      <!-- Stats strip -->
+      <section class="md-stats apv-stats" aria-label="Approval statistics">
+        <button class="md-stat apv-stat--warning" data-stat="pending">
+          <div class="md-stat__icon md-stat__icon--warning"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+          <div class="md-stat__body">
+            <p class="md-stat__label">Pending Actions</p>
+            <p class="md-stat__value" id="stat-pending">15</p>
+            <p class="md-stat__sub">Across all categories</p>
+            <p class="md-stat__delta md-stat__delta--warning">↑ 3 new today</p>
+          </div>
+        </button>
+        <button class="md-stat apv-stat--azure" data-stat="invoice">
+          <div class="md-stat__icon md-stat__icon--azure"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M9 12l2 2 4-4"/></svg></div>
+          <div class="md-stat__body">
+            <p class="md-stat__label">Invoice Approvals</p>
+            <p class="md-stat__value" id="stat-invoice">3</p>
+            <p class="md-stat__sub">Awaiting sign-off</p>
+            <p class="md-stat__delta">₹13,17,520 total value</p>
+          </div>
+        </button>
+        <div class="md-stat apv-stat--success">
+          <div class="md-stat__icon md-stat__icon--success"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+          <div class="md-stat__body">
+            <p class="md-stat__label">Avg Approval Time</p>
+            <p class="md-stat__value">1.8 days</p>
+            <p class="md-stat__sub">This month</p>
+            <p class="md-stat__delta md-stat__delta--success">↓ 0.4 days vs last month</p>
+          </div>
+        </div>
+        <div class="md-stat apv-stat--royal">
+          <div class="md-stat__icon md-stat__icon--royal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg></div>
+          <div class="md-stat__body">
+            <p class="md-stat__label">Approved This Month</p>
+            <p class="md-stat__value">28</p>
+            <p class="md-stat__sub">₹48.25L total approved</p>
+            <p class="md-stat__delta md-stat__delta--success">↑ 12.1% vs May</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Setup / Change sub-filter strip -->
+      <div class="apv-subfilter" id="apv-subfilter" hidden>
+        <span class="apv-subfilter__label">Filter:</span>
+        <div class="apv-subfilter__chips" id="apv-subfilter-chips"></div>
+      </div>
+
+      <!-- Bulk select bar -->
+      <div class="apv-bulk-bar" id="apv-bulk-bar" hidden role="region" aria-label="Bulk actions">
+        <span class="apv-bulk-bar__count"><strong id="bulk-count">0</strong> items selected</span>
+        <span class="apv-bulk-bar__breakdown" id="bulk-breakdown">—</span>
+        <button class="btn btn--ghost btn--sm btn--on-dark" id="bulk-deselect">Deselect All</button>
+        <button class="btn btn--success btn--sm" id="bulk-approve">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          Approve All Selected
+        </button>
+        <button class="btn btn--danger btn--sm" id="bulk-reject">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          Reject All Selected
+        </button>
+        <button class="btn btn--ghost btn--sm btn--on-dark" id="bulk-export">Export Selected</button>
+        <button class="apv-bulk-bar__close" id="bulk-close" aria-label="Close bulk mode">×</button>
+      </div>
+
+      <!-- Tab panel host -->
+      <section class="apv-panel" id="apv-panel" aria-live="polite"></section>
+
+    </main>
+
+    <!-- ── ACTIVITY FEED (collapsible right panel) ───────────────────────── -->
+    <aside class="apv-activity" id="apv-activity" aria-label="Approval activity feed">
+      <header class="apv-activity__head">
+        <h3 class="apv-activity__title">Activity</h3>
+        <button class="apv-activity__close" id="activity-close" aria-label="Close activity">×</button>
+      </header>
+      <button class="apv-activity__markread" id="activity-markread">Mark all read</button>
+      <div class="apv-activity__feed" id="activity-feed"></div>
+    </aside>
+
+  </div>
+
+  <!-- ── DETAIL DRAWER ─────────────────────────────────────────────────── -->
+  <div class="md-drawer-overlay apv-overlay" id="drawer-overlay" hidden></div>
+  <aside class="md-drawer apv-drawer" id="apv-drawer" aria-label="Approval detail" aria-hidden="true">
+    <div class="md-drawer__inner" id="drawer-inner"></div>
+  </aside>
+
+  <!-- ── MODAL HOST ────────────────────────────────────────────────────── -->
+  <div class="md-modal-overlay apv-modal-overlay" id="modal-overlay" hidden></div>
+  <div class="md-modal apv-modal" id="apv-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true">
+    <div class="md-modal__inner" id="modal-inner"></div>
+  </div>
+
+  <!-- ── SETTINGS PANEL ────────────────────────────────────────────────── -->
+  <div class="md-drawer-overlay apv-overlay" id="settings-overlay" hidden></div>
+  <aside class="md-drawer apv-settings" id="apv-settings" aria-label="Approval settings" aria-hidden="true">
+    <div class="md-drawer__inner" id="settings-inner"></div>
+  </aside>
+
+  <!-- ── FILTER POPOVER ────────────────────────────────────────────────── -->
+  <div class="apv-filter-popover" id="apv-filter-popover" role="dialog" aria-label="Filter approvals" hidden>
+    <div class="apv-filter-popover__header">
+      <span>Filter Approvals</span>
+      <button class="apv-filter-popover__close" id="apv-filter-close" aria-label="Close">×</button>
+    </div>
+    <div class="apv-filter-popover__body">
+      <div class="apv-filter-group">
+        <p class="apv-filter-group__label">Type</p>
+        <div class="apv-filter-chips" id="apv-filter-type">
+          <button class="chip is-active" data-filter-type="all">All</button>
+          <button class="chip" data-filter-type="invoice">Invoice</button>
+          <button class="chip" data-filter-type="setup">Setup</button>
+          <button class="chip" data-filter-type="change">Change</button>
+          <button class="chip" data-filter-type="document">Document</button>
+        </div>
+      </div>
+      <div class="apv-filter-group">
+        <p class="apv-filter-group__label">Priority</p>
+        <div class="apv-filter-chips" id="apv-filter-priority">
+          <button class="chip is-active" data-filter-priority="all">All</button>
+          <button class="chip" data-filter-priority="high">🔴 High</button>
+          <button class="chip" data-filter-priority="normal">🟡 Normal</button>
+          <button class="chip" data-filter-priority="low">🔵 Low</button>
+        </div>
+      </div>
+      <div class="apv-filter-group">
+        <p class="apv-filter-group__label">Submitted By</p>
+        <select class="apv-filter-select" id="apv-filter-requester">
+          <option value="all">All Requesters</option>
+          <option value="Priya Sharma">Priya Sharma</option>
+          <option value="HR Admin">HR Admin</option>
+          <option value="Super Admin">Super Admin</option>
+        </select>
+      </div>
+      <div class="apv-filter-group">
+        <p class="apv-filter-group__label">Submitted Date Range</p>
+        <div class="apv-filter-dates">
+          <input type="date" class="apv-filter-date" id="apv-filter-date-from" aria-label="From" />
+          <span>to</span>
+          <input type="date" class="apv-filter-date" id="apv-filter-date-to" aria-label="To" />
+        </div>
+      </div>
+    </div>
+    <div class="apv-filter-popover__footer">
+      <button class="btn btn--ghost" id="apv-filter-reset">Reset All</button>
+      <button class="btn btn--primary" id="apv-filter-apply">Apply Filters</button>
+    </div>
+  </div>
+
+  <!-- ── TOAST REGION ──────────────────────────────────────────────────── -->
+  <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="false"></div>
+
+  <script type="module" src="./approvals.js"></script>
+</body>
+</html>

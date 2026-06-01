@@ -1,0 +1,51 @@
+<!--
+  approval-card.html
+  ─────────────────────────────────────────────────────────────────────────────
+  Pending Approvals card. Lists invoice approval items; each row has client
+  avatar, name, meta (invoice # · period · tax type), inline Approve/Reject
+  micro-buttons, and right-aligned amount.
+
+  Avatar gradient variants:
+    .approval__avatar--azure / --royal / --success / --warning / --danger / --info
+
+  dashboard.js wires:
+    - Approve  → success-bg micro-button; fills success on hover
+    - Reject   → danger-bg micro-button; fills danger on hover
+    - On click → brief confirmation, then row slides out and is removed
+-->
+
+<article class="card">
+
+  <header class="card__head">
+    <div>
+      <h3 class="card__title">Pending Approvals</h3>
+      <p class="card__subtitle">Invoice sign-offs required</p>
+    </div>
+    <a class="link" href="/approvals">All →</a>
+  </header>
+
+  <ul class="approval-list">
+    <li class="approval">
+      <span class="approval__avatar approval__avatar--azure">AC</span>
+
+      <div class="approval__body">
+        <p class="approval__name">Accenture India</p>
+        <p class="approval__meta">INV-2401 · Jun 2026 · IGST 18%</p>
+        <div class="approval__actions">
+          <button class="btn-mini btn-mini--success" aria-label="Approve">
+            <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Approve
+          </button>
+          <button class="btn-mini btn-mini--danger" aria-label="Reject">
+            <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+            Reject
+          </button>
+        </div>
+      </div>
+
+      <p class="approval__amount num" data-currency-amount="480000">₹4,80,000</p>
+    </li>
+
+    <!-- Repeat for each pending approval. Cycle avatar variant for visual rhythm. -->
+  </ul>
+</article>

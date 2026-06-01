@@ -1,0 +1,18 @@
+<!--
+  breadcrumb.html
+  ─────────────────────────────────────────────────────────────────────────────
+  Sub-heading breadcrumb that sits beneath the page title in the topbar.
+  All entries are plain text by default — wrap individual segments in <a>
+  tags when they should navigate.
+
+  dashboard.js bindPanelNav() updates the LAST segment to match the active
+  side-panel nav item label.
+-->
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <span>INFO Services</span>
+  <span class="breadcrumb__sep" aria-hidden="true">·</span>
+  <a href="/platform">Enterprise Invoicing Platform</a>
+  <span class="breadcrumb__sep" aria-hidden="true">·</span>
+  <span aria-current="page">Finance Dashboard</span>
+</nav>

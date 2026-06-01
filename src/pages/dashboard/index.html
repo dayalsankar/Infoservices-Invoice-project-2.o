@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#1a1f5e" />
+  <title>Finance Dashboard · INFO Services Invoicing Platform</title>
+
+  <!-- Poppins + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="../../styles/design-system.css" />
+  <link rel="stylesheet" href="../../styles/globals.css" />
+  <link rel="stylesheet" href="./dashboard.css" />
+</head>
+<body class="is-loading">
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="app">
+
+    <!-- ════════════════════════════════════════════════════════════════════
+         COL 1 — ICON RAIL (72px)
+         ════════════════════════════════════════════════════════════════════ -->
+    <aside class="icon-rail" aria-label="Primary navigation rail">
+
+      <!-- Logo mark — "IS" monogram for INFO Services -->
+      <a class="rail-logo" href="#" aria-label="INFO Services home">
+        <span class="rail-logo__mark">IS</span>
+      </a>
+
+      <!-- Group 1 -->
+      <ul class="rail-group" role="menu">
+        <li role="none">
+          <button class="rail-item is-active" aria-label="Dashboard" role="menuitem" data-rail="dashboard">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+          </button>
+        </li>
+        <li role="none">
+          <a class="rail-item" href="../master-data/" aria-label="Master Data" role="menuitem" data-rail="master">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v6c0 1.7 4 3 9 3s9-1.3 9-3V5M3 11v6c0 1.7 4 3 9 3s9-1.3 9-3v-6"/></svg>
+          </a>
+        </li>
+        <li role="none">
+          <a class="rail-item" href="../timesheets/" aria-label="Timesheets" role="menuitem" data-rail="timesheets">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2.5"/><path d="M3 9h18M8 2v4M16 2v4"/><path d="M8 14h2M14 14h2M8 18h2"/></svg>
+          </a>
+        </li>
+        <li role="none">
+          <a class="rail-item" href="../invoices/" aria-label="Invoices" role="menuitem" data-rail="invoices">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h4"/></svg>
+          </a>
+        </li>
+      </ul>
+
+      <span class="rail-divider" role="separator"></span>
+
+      <!-- Group 2 -->
+      <ul class="rail-group" role="menu">
+        <li role="none">
+          <a class="rail-item has-dot" href="../approvals/" aria-label="Approvals (3 pending)" role="menuitem" data-rail="approvals">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.1V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
+          </a>
+        </li>
+        <li role="none">
+          <a class="rail-item" href="../payments/" aria-label="Payments" role="menuitem" data-rail="payments">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2.5"/><path d="M2 10h20M6 15h3"/></svg>
+          </a>
+        </li>
+        <li role="none">
+          <button class="rail-item" aria-label="Reports" role="menuitem" data-rail="reports">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 16V12M12 16V8M17 16v-6"/></svg>
+          </button>
+        </li>
+        <li role="none">
+          <button class="rail-item has-dot" aria-label="Notifications (7 new)" role="menuitem" data-rail="notifications">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+          </button>
+        </li>
+      </ul>
+
+      <span class="rail-divider" role="separator"></span>
+
+      <!-- Group 3 -->
+      <ul class="rail-group" role="menu">
+        <li role="none">
+          <button class="rail-item" aria-label="Audit & Compliance" role="menuitem" data-rail="audit">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </button>
+        </li>
+        <li role="none">
+          <button class="rail-item" aria-label="System Config" role="menuitem" data-rail="settings">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c.36.13.66.39.86.71"/></svg>
+          </button>
+        </li>
+      </ul>
+
+      <div class="rail-spacer"></div>
+
+      <!-- User avatar (bottom) -->
+      <button class="rail-avatar" aria-label="Account menu — Priya Sharma">
+        <span>FA</span>
+      </button>
+    </aside>
+
+    <!-- ════════════════════════════════════════════════════════════════════
+         COL 2 — SIDE PANEL (260px)
+         ════════════════════════════════════════════════════════════════════ -->
+    <aside class="side-panel" aria-label="Workspace navigation">
+
+      <!-- User header -->
+      <header class="panel-user">
+        <p class="panel-user__greet">Good morning <span aria-hidden="true">☀️</span></p>
+        <h2 class="panel-user__name">Priya Sharma</h2>
+        <span class="panel-user__role">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+          Finance Admin
+        </span>
+      </header>
+
+      <!-- Grouped nav -->
+      <nav class="panel-nav" aria-label="Main navigation">
+
+        <p class="nav-group__label">MAIN</p>
+        <a class="nav-item is-active" href="#" data-nav="dashboard">
+          <svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+          <span class="nav-item__label">Dashboard</span>
+        </a>
+        <a class="nav-item" href="../master-data/" data-nav="master">
+          <svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v6c0 1.7 4 3 9 3s9-1.3 9-3V5M3 11v6c0 1.7 4 3 9 3s9-1.3 9-3v-6"/></svg>
+          <span class="nav-item__label">Master Data</span>
+        </a>
+
+        <p class="nav-group__label">OPERATIONS</p>
+        <a class="nav-item" href="../timesheets/" data-nav="timesheets">
+          <svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2.5"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>
+          <span class="nav-item__label">Timesheets</span>
+          <span class="nav-item__badge nav-item__badge--warning">12</span>
+        </a>
+        <a class="nav-item" href="../invoices/" data-nav="invoices">
+          <svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+          <span class="nav-item__label">Invoices</span>
+          <span class="nav-item__badge nav-item__badge--danger">5</span>
+        </a>
+        <a class="nav-item" href="../approvals/" data-nav="approvals">
+          <svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.1V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
+          <span class="nav-item__label">Approvals</span>
+          <span class="nav-item__badge nav-item__badge--danger" id="nav-badge-apv">3</span>
+        </a>
+        <a class="nav-item" href="../payments/" data-nav="payments">
+          <svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2.5"/><path d="M2 10h20"/></svg>
+          <span class="nav-item__label">Payments</span>
+          <span class="nav-item__badge nav-item__badge--danger" id="nav-badge-pay">2</span>
+        </a>
+
+        <p class="nav-group__label">INTELLIGENCE</p>
+        <a class="nav-item" href="#" data-nav="reports">
+          <svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 16V12M12 16V8M17 16v-6"/></svg>
+          <span class="nav-item__label">Reports &amp; Analytics</span>
+        </a>
+        <a class="nav-item" href="#" data-nav="notifications">
+          <svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+          <span class="nav-item__label">Notifications</span>
+          <span class="nav-item__badge nav-item__badge--danger">7</span>
+        </a>
+
+        <p class="nav-group__label">GOVERNANCE</p>
+        <a class="nav-item" href="#" data-nav="audit">
+          <svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span class="nav-item__label">Audit &amp; Compliance</span>
+        </a>
+        <a class="nav-item" href="#" data-nav="settings">
+          <svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82"/></svg>
+          <span class="nav-item__label">System Config</span>
+        </a>
+      </nav>
+
+      <!-- Revenue mini-card -->
+      <section class="panel-revenue" aria-label="This month revenue">
+        <p class="panel-revenue__label">This Month Revenue</p>
+        <p class="panel-revenue__amount num" data-currency-amount="4825000">₹48,25,000</p>
+        <p class="panel-revenue__delta">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17l9-9M9 8h7v7"/></svg>
+          <span class="num">+14.2%</span>
+          <span class="panel-revenue__delta-label">vs last month</span>
+        </p>
+        <div class="panel-revenue__split">
+          <div>
+            <p class="panel-revenue__split-label">Collected</p>
+            <p class="panel-revenue__split-value num" data-currency-amount="3680000">₹36,80,000</p>
+          </div>
+          <div>
+            <p class="panel-revenue__split-label panel-revenue__split-label--warning">Pending</p>
+            <p class="panel-revenue__split-value panel-revenue__split-value--warning num" data-currency-amount="1145000">₹11,45,000</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Recent activity feed -->
+      <section class="panel-activity" aria-label="Recent activity">
+        <p class="panel-activity__title">RECENT ACTIVITY</p>
+        <ul class="activity-list">
+          <li class="activity-item">
+            <span class="activity-item__dot activity-item__dot--success">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            </span>
+            <div>
+              <p class="activity-item__title">Invoice #INV-2401 Approved</p>
+              <p class="activity-item__meta">2 min ago · Accenture India</p>
+            </div>
+          </li>
+          <li class="activity-item">
+            <span class="activity-item__dot activity-item__dot--warning">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            </span>
+            <div>
+              <p class="activity-item__title">3 Timesheets Pending Review</p>
+              <p class="activity-item__meta">18 min ago · June cycle</p>
+            </div>
+          </li>
+          <li class="activity-item">
+            <span class="activity-item__dot activity-item__dot--info">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+            </span>
+            <div>
+              <p class="activity-item__title">Payment ₹4,80,000 Recorded</p>
+              <p class="activity-item__meta">1 hour ago · TCS Limited</p>
+            </div>
+          </li>
+          <li class="activity-item">
+            <span class="activity-item__dot activity-item__dot--danger">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>
+            </span>
+            <div>
+              <p class="activity-item__title">Invoice #INV-2398 Overdue</p>
+              <p class="activity-item__meta">3 hours ago · Wipro Tech</p>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Logout -->
+      <a class="nav-item nav-item--logout" href="#" data-nav="logout">
+        <svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5M21 12H9"/></svg>
+        <span class="nav-item__label">Logout</span>
+      </a>
+    </aside>
+
+    <!-- ════════════════════════════════════════════════════════════════════
+         COL 3 — MAIN CONTENT
+         ════════════════════════════════════════════════════════════════════ -->
+    <main class="main" id="main-content" tabindex="-1">
+
+      <!-- Topbar -->
+      <header class="topbar">
+        <div class="topbar__title">
+          <h1 class="topbar__heading">Finance Dashboard</h1>
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <span>INFO Services</span>
+            <span class="breadcrumb__sep" aria-hidden="true">·</span>
+            <span>Enterprise Invoicing Platform</span>
+          </nav>
+        </div>
+
+        <div class="topbar__actions">
+          <label class="topbar__search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+            <input type="search" placeholder="Search invoices, clients…" aria-label="Search" />
+          </label>
+
+          <div class="currency-toggle" role="radiogroup" aria-label="Currency">
+            <button class="currency-toggle__btn is-active" data-currency="INR" role="radio" aria-checked="true">
+              <span class="currency-toggle__symbol">₹</span> INR
+            </button>
+            <button class="currency-toggle__btn" data-currency="USD" role="radio" aria-checked="false">
+              <span class="currency-toggle__symbol">$</span> USD
+            </button>
+          </div>
+
+          <button class="icon-btn icon-btn--bell" aria-label="Notifications (7 new)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+            <span class="icon-btn__dot"></span>
+          </button>
+
+          <button class="btn btn--primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+            New Invoice
+          </button>
+        </div>
+      </header>
+
+      <!-- Scrollable content -->
+      <div class="content">
+
+        <!-- ══ A) Hero banner ══════════════════════════════════════════════ -->
+        <section class="hero" aria-label="Daily summary">
+          <span class="hero__decoration hero__decoration--1" aria-hidden="true"></span>
+          <span class="hero__decoration hero__decoration--2" aria-hidden="true"></span>
+          <span class="hero__decoration hero__decoration--3" aria-hidden="true"></span>
+
+          <div class="hero__left">
+            <p class="hero__date">Friday, 30 May 2026</p>
+            <h2 class="hero__greeting">
+              Good Morning, Priya! <span class="hero__wave" aria-hidden="true">👋</span>
+            </h2>
+            <div class="hero__chips">
+              <a class="hero-chip" href="../approvals/?tab=invoice" style="text-decoration:none;color:inherit">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+                3 invoices awaiting approval
+              </a>
+              <a class="hero-chip" href="../timesheets/?tab=pending" style="text-decoration:none;color:inherit">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18"/></svg>
+                12 timesheets pending review
+              </a>
+              <a class="hero-chip" href="../invoices/?tab=overdue" style="text-decoration:none;color:inherit">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                2 invoices overdue
+              </a>
+            </div>
+          </div>
+
+          <div class="hero__right">
+            <div class="hero-blob">
+              <p class="hero-blob__label">Q2 Revenue</p>
+              <p class="hero-blob__value num">₹1.42 Cr</p>
+            </div>
+            <div class="hero-blob">
+              <p class="hero-blob__label">Collection Rate</p>
+              <p class="hero-blob__value num">87.4%</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ══ B) Quick actions ════════════════════════════════════════════ -->
+        <section class="quick-actions" aria-label="Quick actions">
+          <a class="qa-btn qa-btn--primary" href="../invoices/new.html" style="text-decoration:none">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M12 18v-6M9 15h6"/></svg>
+            Generate Invoice
+          </a>
+          <button class="qa-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+            Record Payment
+          </button>
+          <a class="qa-btn" href="../approvals/" style="text-decoration:none;color:inherit">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.1V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
+            Review Approvals
+          </a>
+          <button class="qa-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 16V12M12 16V8M17 16v-6"/></svg>
+            View Reports
+          </button>
+          <button class="qa-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5M12 15V3"/></svg>
+            Export Data
+          </button>
+        </section>
+
+        <!-- ══ C) KPI cards ════════════════════════════════════════════════ -->
+        <section class="kpi-row" aria-label="Key performance indicators">
+
+          <article class="kpi kpi--revenue">
+            <header class="kpi__head">
+              <span class="kpi__icon kpi__icon--azure">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h4"/></svg>
+              </span>
+              <span class="trend trend--success">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17l9-9M9 8h7v7"/></svg>
+                <span class="num">18.4%</span>
+              </span>
+            </header>
+            <p class="kpi__label">Total Invoices (YTD)</p>
+            <p class="kpi__value num">1,248</p>
+            <p class="kpi__sub">₹4.86 Cr total value</p>
+            <span class="kpi__stripe" aria-hidden="true"></span>
+          </article>
+
+          <a class="kpi kpi--collected" href="../payments/?tab=received" style="text-decoration:none;color:inherit">
+            <header class="kpi__head">
+              <span class="kpi__icon kpi__icon--success">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><path d="M12 22V7M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+              </span>
+              <span class="trend trend--success">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17l9-9M9 8h7v7"/></svg>
+                <span class="num">12.1%</span>
+              </span>
+            </header>
+            <p class="kpi__label">Amount Collected</p>
+            <p class="kpi__value num" data-currency-amount="3680000">₹36.8L</p>
+            <p class="kpi__sub"><span class="num" data-currency-amount="3680000" data-currency-format="usd-only">$44,120</span> · this month</p>
+            <span class="kpi__stripe kpi__stripe--success" aria-hidden="true"></span>
+          </a>
+
+          <a class="kpi kpi--outstanding" href="../payments/?tab=outstanding" style="text-decoration:none;color:inherit">
+            <header class="kpi__head">
+              <span class="kpi__icon kpi__icon--warning">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              </span>
+              <span class="trend trend--danger">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 7L8 16M15 16H8V9"/></svg>
+                <span class="num">3.2%</span>
+              </span>
+            </header>
+            <p class="kpi__label">Outstanding Amount</p>
+            <p class="kpi__value num" data-currency-amount="1145000">₹11.45L</p>
+            <p class="kpi__sub"><span class="num" data-currency-amount="1145000" data-currency-format="usd-only">$13,740</span> · 28 invoices</p>
+            <span class="kpi__stripe kpi__stripe--warning" aria-hidden="true"></span>
+          </a>
+
+          <a class="kpi kpi--overdue" href="../payments/?tab=overdue" style="text-decoration:none;color:inherit">
+            <header class="kpi__head">
+              <span class="kpi__icon kpi__icon--danger">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>
+              </span>
+              <span class="trend trend--danger">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17l9-9M9 8h7v7"/></svg>
+                <span class="num">1 new</span>
+              </span>
+            </header>
+            <p class="kpi__label">Overdue Invoices</p>
+            <p class="kpi__value num">2</p>
+            <p class="kpi__sub"><span class="num" data-currency-amount="320000">₹3.20L</span> · Action needed</p>
+            <span class="kpi__stripe kpi__stripe--danger" aria-hidden="true"></span>
+          </a>
+        </section>
+
+        <!-- ══ D) Main grid: Revenue chart + side stack ════════════════════ -->
+        <section class="main-grid">
+
+          <!-- LEFT — Revenue Overview -->
+          <article class="card chart-card">
+            <header class="card__head">
+              <div>
+                <h3 class="card__title">Revenue Overview</h3>
+                <p class="card__subtitle">Cashflow &amp; Invoice summary</p>
+              </div>
+              <div class="pill-tabs" role="tablist" aria-label="Range">
+                <button class="pill-tab" role="tab" aria-selected="false" data-range="3M">3M</button>
+                <button class="pill-tab is-active" role="tab" aria-selected="true" data-range="6M">6M</button>
+                <button class="pill-tab" role="tab" aria-selected="false" data-range="1Y">1Y</button>
+              </div>
+            </header>
+            <div class="card__legend">
+              <span class="legend-dot legend-dot--royal"></span> Revenue (₹L)
+              <span class="legend-dot legend-dot--success"></span> Collected (₹L)
+              <span class="legend-dot legend-dot--warning"></span> Outstanding (₹L)
+            </div>
+            <div class="chart-wrap chart-wrap--lg">
+              <canvas id="chart-revenue" aria-label="Revenue overview chart" role="img"></canvas>
+            </div>
+          </article>
+
+          <!-- RIGHT stack -->
+          <div class="side-stack">
+
+            <!-- Pending Approvals -->
+            <article class="card">
+              <header class="card__head">
+                <div>
+                  <h3 class="card__title">Pending Approvals</h3>
+                  <p class="card__subtitle">Invoice sign-offs required</p>
+                </div>
+                <a class="link" href="../approvals/?tab=invoice">All →</a>
+              </header>
+
+              <ul class="approval-list">
+                <li class="approval">
+                  <span class="approval__avatar approval__avatar--azure">AC</span>
+                  <div class="approval__body">
+                    <p class="approval__name">Accenture India</p>
+                    <p class="approval__meta">INV-2401 · Jun 2026 · IGST 18%</p>
+                    <div class="approval__actions">
+                      <button class="btn-mini btn-mini--success" aria-label="Approve">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        Approve
+                      </button>
+                      <button class="btn-mini btn-mini--danger" aria-label="Reject">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+                        Reject
+                      </button>
+                    </div>
+                  </div>
+                  <p class="approval__amount num" data-currency-amount="480000">₹4,80,000</p>
+                </li>
+
+                <li class="approval">
+                  <span class="approval__avatar approval__avatar--royal">TC</span>
+                  <div class="approval__body">
+                    <p class="approval__name">TCS Limited</p>
+                    <p class="approval__meta">INV-2402 · Jun 2026 · CGST+SGST</p>
+                    <div class="approval__actions">
+                      <button class="btn-mini btn-mini--success" aria-label="Approve">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        Approve
+                      </button>
+                      <button class="btn-mini btn-mini--danger" aria-label="Reject">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+                        Reject
+                      </button>
+                    </div>
+                  </div>
+                  <p class="approval__amount num" data-currency-amount="240000">₹2,40,000</p>
+                </li>
+
+                <li class="approval">
+                  <span class="approval__avatar approval__avatar--success">IN</span>
+                  <div class="approval__body">
+                    <p class="approval__name">Infosys BPM</p>
+                    <p class="approval__meta">INV-2403 · Jun 2026 · SEZ/LUT</p>
+                    <div class="approval__actions">
+                      <button class="btn-mini btn-mini--success" aria-label="Approve">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        Approve
+                      </button>
+                      <button class="btn-mini btn-mini--danger" aria-label="Reject">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+                        Reject
+                      </button>
+                    </div>
+                  </div>
+                  <p class="approval__amount num" data-currency-amount="600000">₹6,00,000</p>
+                </li>
+              </ul>
+            </article>
+
+            <!-- Invoice Status Donut -->
+            <article class="card">
+              <header class="card__head">
+                <div>
+                  <h3 class="card__title">Invoice Status Split</h3>
+                  <p class="card__subtitle">YTD totals</p>
+                </div>
+              </header>
+
+              <div class="donut-wrap">
+                <div class="donut-chart">
+                  <canvas id="chart-donut" aria-label="Invoice status split" role="img"></canvas>
+                  <div class="donut-center">
+                    <p class="donut-center__value num">1,248</p>
+                    <p class="donut-center__label">Total</p>
+                  </div>
+                </div>
+                <ul class="donut-legend">
+                  <li><span class="legend-dot legend-dot--success"></span> Paid <span class="num">842</span></li>
+                  <li><span class="legend-dot legend-dot--royal"></span> Approved <span class="num">186</span></li>
+                  <li><span class="legend-dot legend-dot--warning"></span> Pending <span class="num">152</span></li>
+                  <li><span class="legend-dot legend-dot--danger"></span> Overdue <span class="num">68</span></li>
+                </ul>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- ══ E) Two-column charts row ════════════════════════════════════ -->
+        <section class="charts-row">
+
+          <!-- LEFT — Payment Aging -->
+          <article class="card">
+            <header class="card__head">
+              <div>
+                <h3 class="card__title">Payment Aging</h3>
+                <p class="card__subtitle">Outstanding by bucket</p>
+              </div>
+            </header>
+
+            <ul class="aging-list">
+              <li class="aging">
+                <p class="aging__label">0–30 days</p>
+                <div class="aging__track">
+                  <span class="aging__fill aging__fill--success" data-bar-width="75"></span>
+                </div>
+                <p class="aging__value num" data-currency-amount="720000">₹7.2L</p>
+              </li>
+              <li class="aging">
+                <p class="aging__label">31–60 days</p>
+                <div class="aging__track">
+                  <span class="aging__fill aging__fill--warning" data-bar-width="45"></span>
+                </div>
+                <p class="aging__value num" data-currency-amount="280000">₹2.8L</p>
+              </li>
+              <li class="aging">
+                <p class="aging__label">61–90 days</p>
+                <div class="aging__track">
+                  <span class="aging__fill aging__fill--orange" data-bar-width="20"></span>
+                </div>
+                <p class="aging__value num" data-currency-amount="105000">₹1.05L</p>
+              </li>
+              <li class="aging">
+                <p class="aging__label">&gt;90 days</p>
+                <div class="aging__track">
+                  <span class="aging__fill aging__fill--danger" data-bar-width="10"></span>
+                </div>
+                <p class="aging__value num" data-currency-amount="40000">₹0.4L</p>
+              </li>
+            </ul>
+
+            <div class="chart-wrap chart-wrap--sm">
+              <canvas id="chart-aging" aria-label="Payment aging chart" role="img"></canvas>
+            </div>
+          </article>
+
+          <!-- RIGHT — Top Clients -->
+          <article class="card">
+            <header class="card__head">
+              <div>
+                <h3 class="card__title">Top Clients</h3>
+                <p class="card__subtitle">By invoiced volume (YTD)</p>
+              </div>
+              <a class="link" href="#">View All →</a>
+            </header>
+
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th scope="col">Client</th>
+                  <th scope="col" class="num-col">Invoiced</th>
+                  <th scope="col">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <span class="cell-client">
+                      <span class="avatar avatar--azure">AC</span>
+                      Accenture India
+                    </span>
+                  </td>
+                  <td class="num-col num" data-currency-amount="1240000">₹12,40,000</td>
+                  <td><span class="status status--info">Approved</span></td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="cell-client">
+                      <span class="avatar avatar--royal">TC</span>
+                      TCS Limited
+                    </span>
+                  </td>
+                  <td class="num-col num" data-currency-amount="980000">₹9,80,000</td>
+                  <td><span class="status status--success">Paid</span></td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="cell-client">
+                      <span class="avatar avatar--success">IN</span>
+                      Infosys BPM
+                    </span>
+                  </td>
+                  <td class="num-col num" data-currency-amount="840000">₹8,40,000</td>
+                  <td><span class="status status--warning">Pending</span></td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="cell-client">
+                      <span class="avatar avatar--warning">WT</span>
+                      Wipro Tech
+                    </span>
+                  </td>
+                  <td class="num-col num" data-currency-amount="620000">₹6,20,000</td>
+                  <td><span class="status status--success">Paid</span></td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="cell-client">
+                      <span class="avatar avatar--danger">HM</span>
+                      HCL Methods
+                    </span>
+                  </td>
+                  <td class="num-col num" data-currency-amount="480000">₹4,80,000</td>
+                  <td><span class="status status--danger">Overdue</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </article>
+        </section>
+
+        <!-- ══ F) Recent Invoices full-width ═══════════════════════════════ -->
+        <section>
+          <article class="card">
+            <header class="card__head">
+              <div>
+                <h3 class="card__title">Recent Invoices</h3>
+                <p class="card__subtitle">Latest 5 across all clients</p>
+              </div>
+              <div class="card__head-right">
+                <div class="pill-tabs" role="tablist" aria-label="Filter">
+                  <button class="pill-tab is-active" role="tab" aria-selected="true"  data-filter="all">All</button>
+                  <button class="pill-tab" role="tab" aria-selected="false" data-filter="draft">Draft</button>
+                  <button class="pill-tab" role="tab" aria-selected="false" data-filter="pending">Pending</button>
+                  <button class="pill-tab" role="tab" aria-selected="false" data-filter="overdue">Overdue</button>
+                </div>
+                <a class="link" href="#">View All →</a>
+              </div>
+            </header>
+
+            <table class="data-table data-table--wide">
+              <thead>
+                <tr>
+                  <th scope="col">Invoice #</th>
+                  <th scope="col">Client</th>
+                  <th scope="col">Consultant</th>
+                  <th scope="col">Period</th>
+                  <th scope="col" class="num-col">Amount (INR)</th>
+                  <th scope="col" class="num-col">Amount (USD)</th>
+                  <th scope="col">Tax Type</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr data-row-status="pending">
+                  <td class="num">INV-2401</td>
+                  <td><span class="cell-client"><span class="avatar avatar--azure">AC</span>Accenture India</span></td>
+                  <td>Arjun Mehta</td>
+                  <td>Jun 2026</td>
+                  <td class="num-col num">₹4,80,000</td>
+                  <td class="num-col num">$5,748</td>
+                  <td><span class="tax-pill">IGST 18%</span></td>
+                  <td><span class="status status--warning">Pending</span></td>
+                  <td><button class="action action--view">View</button></td>
+                </tr>
+                <tr data-row-status="pending">
+                  <td class="num">INV-2402</td>
+                  <td><span class="cell-client"><span class="avatar avatar--royal">TC</span>TCS Limited</span></td>
+                  <td>Priya Sharma</td>
+                  <td>Jun 2026</td>
+                  <td class="num-col num">₹2,40,000</td>
+                  <td class="num-col num">$2,874</td>
+                  <td><span class="tax-pill">CGST+SGST</span></td>
+                  <td><span class="status status--warning">Pending</span></td>
+                  <td><button class="action action--view">View</button></td>
+                </tr>
+                <tr data-row-status="draft">
+                  <td class="num">INV-2403</td>
+                  <td><span class="cell-client"><span class="avatar avatar--success">IN</span>Infosys BPM</span></td>
+                  <td>Vikram Nair</td>
+                  <td>Jun 2026</td>
+                  <td class="num-col num">₹6,00,000</td>
+                  <td class="num-col num">$7,184</td>
+                  <td><span class="tax-pill">SEZ/LUT</span></td>
+                  <td><span class="status status--default">Draft</span></td>
+                  <td><button class="action action--view">View</button></td>
+                </tr>
+                <tr data-row-status="overdue">
+                  <td class="num">INV-2398</td>
+                  <td><span class="cell-client"><span class="avatar avatar--warning">WT</span>Wipro Tech</span></td>
+                  <td>Sunita Rao</td>
+                  <td>Apr 2026</td>
+                  <td class="num-col num">₹3,20,000</td>
+                  <td class="num-col num">$3,832</td>
+                  <td><span class="tax-pill">IGST 18%</span></td>
+                  <td><span class="status status--danger">Overdue</span></td>
+                  <td><button class="action action--followup">Follow Up</button></td>
+                </tr>
+                <tr data-row-status="pending">
+                  <td class="num">INV-2400</td>
+                  <td><span class="cell-client"><span class="avatar avatar--info">CA</span>Capgemini</span></td>
+                  <td>Rahul Verma</td>
+                  <td>Jun 2026</td>
+                  <td class="num-col num">₹5,40,000</td>
+                  <td class="num-col num">$6,466</td>
+                  <td><span class="tax-pill">CGST+SGST</span></td>
+                  <td><span class="status status--info">Approved</span></td>
+                  <td><button class="action action--view">View</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </article>
+        </section>
+
+        <footer class="content-footer">
+          <p>© 2026 INFO Services · Enterprise Invoicing &amp; Billing Management Platform</p>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="./dashboard.js"></script>
+</body>
+</html>

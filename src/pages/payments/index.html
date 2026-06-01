@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#1a1f5e" />
+  <title>Payments · INFO Services Invoicing Platform</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../../styles/design-system.css" />
+  <link rel="stylesheet" href="../../styles/globals.css" />
+  <link rel="stylesheet" href="../dashboard/dashboard.css" />
+  <link rel="stylesheet" href="../master-data/master-data.css" />
+  <link rel="stylesheet" href="../timesheets/timesheets.css" />
+  <link rel="stylesheet" href="../invoices/invoices.css" />
+  <link rel="stylesheet" href="../approvals/approvals.css" />
+  <link rel="stylesheet" href="./payments.css" />
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body class="is-loading">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="app">
+    <!-- ── ICON RAIL ─────────────────────────────────────────────────────── -->
+    <aside class="icon-rail" aria-label="Primary navigation rail">
+      <a class="rail-logo" href="../dashboard/" aria-label="INFO Services home"><span class="rail-logo__mark">IS</span></a>
+      <ul class="rail-group" role="menu">
+        <li role="none"><a class="rail-item" href="../dashboard/" aria-label="Dashboard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></a></li>
+        <li role="none"><a class="rail-item" href="../master-data/" aria-label="Master Data"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v6c0 1.7 4 3 9 3s9-1.3 9-3V5M3 11v6c0 1.7 4 3 9 3s9-1.3 9-3v-6"/></svg></a></li>
+        <li role="none"><a class="rail-item" href="../timesheets/" aria-label="Timesheets"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2.5"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></a></li>
+        <li role="none"><a class="rail-item" href="../invoices/" aria-label="Invoices"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></a></li>
+      </ul>
+      <span class="rail-divider" role="separator"></span>
+      <ul class="rail-group" role="menu">
+        <li role="none"><a class="rail-item has-dot" href="../approvals/" aria-label="Approvals"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.1V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg></a></li>
+        <li role="none"><a class="rail-item is-active" href="./" aria-label="Payments"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2.5"/><path d="M2 10h20"/></svg></a></li>
+        <li role="none"><button class="rail-item" aria-label="Reports"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 16V12M12 16V8M17 16v-6"/></svg></button></li>
+        <li role="none"><button class="rail-item has-dot" aria-label="Notifications"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></button></li>
+      </ul>
+      <span class="rail-divider" role="separator"></span>
+      <ul class="rail-group" role="menu">
+        <li role="none"><button class="rail-item" aria-label="Audit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></button></li>
+        <li role="none"><button class="rail-item" aria-label="Settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/></svg></button></li>
+      </ul>
+      <div class="rail-spacer"></div>
+      <button class="rail-avatar" aria-label="Account menu"><span>FA</span></button>
+    </aside>
+
+    <!-- ── SIDE PANEL ────────────────────────────────────────────────────── -->
+    <aside class="side-panel" aria-label="Workspace navigation">
+      <header class="panel-user">
+        <p class="panel-user__greet">Good morning <span aria-hidden="true">☀️</span></p>
+        <h2 class="panel-user__name">Priya Sharma</h2>
+        <span class="panel-user__role"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg> Finance Admin</span>
+      </header>
+      <nav class="panel-nav" aria-label="Main navigation">
+        <p class="nav-group__label">MAIN</p>
+        <a class="nav-item" href="../dashboard/" data-nav="dashboard"><svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span class="nav-item__label">Dashboard</span></a>
+        <a class="nav-item" href="../master-data/" data-nav="master"><svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v6c0 1.7 4 3 9 3s9-1.3 9-3V5M3 11v6c0 1.7 4 3 9 3s9-1.3 9-3v-6"/></svg><span class="nav-item__label">Master Data</span></a>
+        <p class="nav-group__label">OPERATIONS</p>
+        <a class="nav-item" href="../timesheets/" data-nav="timesheets"><svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2.5"/><path d="M3 9h18M8 2v4M16 2v4"/></svg><span class="nav-item__label">Timesheets</span><span class="nav-item__badge nav-item__badge--warning">12</span></a>
+        <a class="nav-item" href="../invoices/" data-nav="invoices"><svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg><span class="nav-item__label">Invoices</span><span class="nav-item__badge nav-item__badge--danger">5</span></a>
+        <a class="nav-item" href="../approvals/" data-nav="approvals"><svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.1V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg><span class="nav-item__label">Approvals</span><span class="nav-item__badge nav-item__badge--danger">18</span></a>
+        <a class="nav-item is-active" href="./" data-nav="payments"><svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2.5"/><path d="M2 10h20"/></svg><span class="nav-item__label">Payments</span><span class="nav-item__badge nav-item__badge--danger" id="nav-badge-pay">2</span></a>
+        <p class="nav-group__label">INTELLIGENCE</p>
+        <a class="nav-item" href="#" data-nav="reports"><svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 16V12M12 16V8M17 16v-6"/></svg><span class="nav-item__label">Reports &amp; Analytics</span></a>
+        <a class="nav-item" href="#" data-nav="notifications"><svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg><span class="nav-item__label">Notifications</span><span class="nav-item__badge nav-item__badge--danger">7</span></a>
+        <p class="nav-group__label">GOVERNANCE</p>
+        <a class="nav-item" href="#" data-nav="audit"><svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span class="nav-item__label">Audit &amp; Compliance</span></a>
+        <a class="nav-item" href="#" data-nav="settings"><svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/></svg><span class="nav-item__label">System Config</span></a>
+      </nav>
+      <a class="nav-item nav-item--logout" href="#"><svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5M21 12H9"/></svg><span class="nav-item__label">Logout</span></a>
+    </aside>
+
+    <!-- ── MAIN ──────────────────────────────────────────────────────────── -->
+    <main class="main" id="main-content" tabindex="-1">
+      <!-- Topbar -->
+      <header class="topbar pay-topbar">
+        <div class="topbar__title">
+          <h1 class="topbar__heading">Payment Management</h1>
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="../dashboard/">INFO Services</a>
+            <span class="breadcrumb__sep" aria-hidden="true">·</span>
+            <span aria-current="page">Payment Management</span>
+          </nav>
+        </div>
+        <div class="topbar__actions">
+          <label class="topbar__search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+            <input id="pay-search" type="search" placeholder="Search invoice, client, reference…" aria-label="Search" />
+          </label>
+          <div class="period-picker" role="group" aria-label="Period">
+            <button class="period-picker__btn" id="period-prev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+            <span class="period-picker__label" id="period-label">June 2026</span>
+            <button class="period-picker__btn" id="period-next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+          </div>
+          <div class="currency-toggle" role="radiogroup" aria-label="Currency">
+            <button class="currency-toggle__btn is-active" data-currency="INR" role="radio">₹ INR</button>
+            <button class="currency-toggle__btn" data-currency="USD" role="radio">$ USD</button>
+          </div>
+          <button class="btn btn--ghost" id="btn-export"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5M12 15V3"/></svg> Export</button>
+          <button class="btn btn--ghost" id="btn-reconcile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> Reconcile</button>
+          <button class="btn btn--primary" id="btn-record-pay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg> Record Payment</button>
+        </div>
+      </header>
+
+      <!-- Overdue banner -->
+      <div class="pay-overdue-banner" id="pay-overdue-banner" hidden>
+        <span class="pay-overdue-banner__dot"></span>
+        <p class="pay-overdue-banner__text"><strong id="overdue-count">2</strong> invoice(s) are overdue totalling <strong id="overdue-amount">₹4,09,400</strong>. Immediate action required.</p>
+        <button class="btn btn--danger btn--sm" id="banner-review">Review Overdue</button>
+        <button class="pay-overdue-banner__close" id="banner-close" aria-label="Dismiss">×</button>
+      </div>
+
+      <!-- Sub-tabs -->
+      <nav class="md-tabs ts-tabs inv-tabs apv-tabs pay-tabs" role="tablist" aria-label="Payment status">
+        <button class="md-tab is-active" role="tab" data-tab="all" aria-selected="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2.5"/><path d="M2 10h20"/></svg><span>All Payments</span><span class="md-tab__badge" id="tab-count-all">10</span></button>
+        <button class="md-tab" role="tab" data-tab="received"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg><span>Received</span><span class="md-tab__badge md-tab__badge--success" id="tab-count-received">3</span></button>
+        <button class="md-tab" role="tab" data-tab="outstanding"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span>Outstanding</span><span class="md-tab__badge md-tab__badge--warning" id="tab-count-outstanding">3</span></button>
+        <button class="md-tab" role="tab" data-tab="overdue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg><span>Overdue</span><span class="md-tab__badge md-tab__badge--danger md-tab__badge--pulse" id="tab-count-overdue">2</span></button>
+        <button class="md-tab" role="tab" data-tab="partial"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 0 20z" fill="currentColor"/></svg><span>Partial</span><span class="md-tab__badge md-tab__badge--azure" id="tab-count-partial">2</span></button>
+        <button class="md-tab" role="tab" data-tab="writtenoff"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="21 8 21 21 3 21 3 8"/><rect x="1" y="3" width="22" height="5"/><line x1="10" y1="12" x2="14" y2="12"/></svg><span>Written Off</span><span class="md-tab__badge" id="tab-count-writtenoff">0</span></button>
+      </nav>
+
+      <!-- Stats strip (4 KPI mini cards) -->
+      <section class="md-stats apv-stats pay-stats" aria-label="Payment statistics">
+        <button class="md-stat pay-stat--success" data-stat="received">
+          <div class="md-stat__icon md-stat__icon--success"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
+          <div class="md-stat__body">
+            <p class="md-stat__label">Total Collected</p>
+            <p class="md-stat__value">₹36.8L</p>
+            <p class="md-stat__sub">$44,120 · June 2026</p>
+            <p class="md-stat__delta md-stat__delta--success">↑ 12.1% vs May</p>
+            <div class="pay-spark" id="spark-collected"></div>
+          </div>
+        </button>
+        <button class="md-stat pay-stat--warning" data-stat="outstanding">
+          <div class="md-stat__icon md-stat__icon--warning"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+          <div class="md-stat__body">
+            <p class="md-stat__label">Outstanding Balance</p>
+            <p class="md-stat__value">₹11.45L</p>
+            <p class="md-stat__sub">12 invoices pending</p>
+            <p class="md-stat__delta">↓ ₹2.1L from last month</p>
+          </div>
+        </button>
+        <button class="md-stat pay-stat--danger" data-stat="overdue">
+          <div class="md-stat__icon md-stat__icon--danger"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+          <div class="md-stat__body">
+            <p class="md-stat__label">Overdue Amount</p>
+            <p class="md-stat__value">₹3.20L</p>
+            <p class="md-stat__sub">2 invoices · avg 22 days late</p>
+            <p class="md-stat__delta md-stat__delta--danger">Action required</p>
+          </div>
+        </button>
+        <div class="md-stat pay-stat--royal">
+          <div class="md-stat__icon md-stat__icon--royal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15.5A9 9 0 1 1 8.5 3"/><path d="M21 3v6h-6"/></svg></div>
+          <div class="md-stat__body pay-stat__rate">
+            <p class="md-stat__label">Collection Rate</p>
+            <p class="md-stat__value">87.4%</p>
+            <p class="md-stat__sub">Payments received on time</p>
+            <p class="md-stat__delta md-stat__delta--success">↑ 2.3% vs last month</p>
+          </div>
+          <div class="pay-ring" id="collection-ring">
+            <svg width="64" height="64" viewBox="0 0 64 64">
+              <circle cx="32" cy="32" r="27" stroke="#e8ecf4" stroke-width="6" fill="none"/>
+              <circle cx="32" cy="32" r="27" stroke="#2a52a8" stroke-width="6" fill="none"
+                stroke-dasharray="169.6"
+                stroke-dashoffset="21.4"
+                stroke-linecap="round"
+                transform="rotate(-90 32 32)"/>
+            </svg>
+            <span class="pay-ring__text">87%</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Analytics row: Cashflow + Aging charts -->
+      <section class="pay-analytics" aria-label="Payment analytics">
+        <article class="pay-chart-card">
+          <header class="pay-chart-card__head">
+            <div>
+              <h3 class="pay-chart-card__title">Cashflow Overview</h3>
+              <p class="pay-chart-card__sub">Revenue vs Collections · Last 6 Months</p>
+            </div>
+            <div class="pay-chart-card__tabs" role="tablist">
+              <button class="pay-chart-tab" data-range="3m">3M</button>
+              <button class="pay-chart-tab is-active" data-range="6m">6M</button>
+              <button class="pay-chart-tab" data-range="1y">1Y</button>
+            </div>
+          </header>
+          <div class="pay-chart-card__body">
+            <canvas id="cashflow-chart"></canvas>
+          </div>
+        </article>
+
+        <article class="pay-chart-card">
+          <header class="pay-chart-card__head">
+            <div>
+              <h3 class="pay-chart-card__title">Payment Aging Analysis</h3>
+              <p class="pay-chart-card__sub">Outstanding by age bucket</p>
+            </div>
+          </header>
+          <div class="pay-chart-card__body pay-chart-card__body--split">
+            <canvas id="aging-chart"></canvas>
+          </div>
+          <ul class="pay-aging-list" id="aging-list"></ul>
+        </article>
+      </section>
+
+      <!-- View toggle + control bar -->
+      <div class="pay-control-bar">
+        <div class="pay-view-toggle" role="tablist" aria-label="View mode">
+          <button class="pay-view-toggle__btn is-active" data-view="table" role="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg> Table</button>
+          <button class="pay-view-toggle__btn" data-view="client" role="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg> Client View</button>
+        </div>
+        <div class="pay-control-bar__right">
+          <label class="pay-control-bar__sort">
+            Sort:
+            <select id="pay-sort">
+              <option value="status">By Status (Overdue first)</option>
+              <option value="amount">By Amount</option>
+              <option value="due">By Due Date</option>
+              <option value="client">By Client</option>
+            </select>
+          </label>
+        </div>
+      </div>
+
+      <!-- Bulk action bar -->
+      <div class="apv-bulk-bar pay-bulk-bar" id="pay-bulk-bar" hidden role="region" aria-label="Bulk actions">
+        <span class="apv-bulk-bar__count"><strong id="bulk-count">0</strong> invoices selected</span>
+        <span class="apv-bulk-bar__breakdown" id="bulk-total">₹0</span>
+        <button class="btn btn--ghost btn--sm btn--on-dark" id="bulk-deselect">Deselect All</button>
+        <button class="btn btn--success btn--sm" id="bulk-record">✓ Record Payments</button>
+        <button class="btn btn--warning btn--sm" id="bulk-remind"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/></svg> Send Reminders</button>
+        <button class="btn btn--ghost btn--sm btn--on-dark" id="bulk-export">Export Selected</button>
+        <button class="apv-bulk-bar__close" id="bulk-close" aria-label="Close">×</button>
+      </div>
+
+      <!-- Tab panel host -->
+      <section class="apv-panel pay-panel" id="pay-panel" aria-live="polite"></section>
+    </main>
+  </div>
+
+  <!-- ── DRAWER ────────────────────────────────────────────────────────── -->
+  <div class="md-drawer-overlay apv-overlay" id="drawer-overlay" hidden></div>
+  <aside class="md-drawer apv-drawer pay-drawer" id="pay-drawer" aria-label="Payment detail" aria-hidden="true">
+    <div class="md-drawer__inner" id="drawer-inner"></div>
+  </aside>
+
+  <!-- ── MODAL HOST ────────────────────────────────────────────────────── -->
+  <div class="md-modal-overlay apv-modal-overlay" id="modal-overlay" hidden></div>
+  <div class="md-modal apv-modal pay-modal" id="pay-modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="md-modal__inner" id="modal-inner"></div>
+  </div>
+
+  <!-- ── RECONCILIATION PANEL ──────────────────────────────────────────── -->
+  <div class="md-drawer-overlay apv-overlay" id="recon-overlay" hidden></div>
+  <aside class="md-drawer pay-recon" id="pay-recon" aria-label="Bank reconciliation" aria-hidden="true">
+    <div class="md-drawer__inner" id="recon-inner"></div>
+  </aside>
+
+  <!-- ── TOAST REGION ──────────────────────────────────────────────────── -->
+  <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="false"></div>
+
+  <script type="module" src="./payments.js"></script>
+</body>
+</html>

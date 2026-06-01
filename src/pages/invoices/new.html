@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#1a1f5e" />
+  <title>New Invoice · INFO Services Invoicing Platform</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../../styles/design-system.css" />
+  <link rel="stylesheet" href="../../styles/globals.css" />
+  <link rel="stylesheet" href="../dashboard/dashboard.css" />
+  <link rel="stylesheet" href="../master-data/master-data.css" />
+  <link rel="stylesheet" href="../timesheets/timesheets.css" />
+  <link rel="stylesheet" href="./invoices.css" />
+</head>
+<body class="is-loading">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="app">
+    <!-- COL 1 — ICON RAIL (compact identical to list screen) -->
+    <aside class="icon-rail" aria-label="Primary navigation rail">
+      <a class="rail-logo" href="../dashboard/"><span class="rail-logo__mark">IS</span></a>
+      <ul class="rail-group" role="menu">
+        <li role="none"><a class="rail-item" href="../dashboard/" aria-label="Dashboard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></a></li>
+        <li role="none"><a class="rail-item" href="../master-data/" aria-label="Master Data"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v6c0 1.7 4 3 9 3s9-1.3 9-3V5M3 11v6c0 1.7 4 3 9 3s9-1.3 9-3v-6"/></svg></a></li>
+        <li role="none"><a class="rail-item" href="../timesheets/" aria-label="Timesheets"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2.5"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></a></li>
+        <li role="none"><a class="rail-item is-active" href="./" aria-label="Invoices"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></a></li>
+      </ul>
+      <div class="rail-spacer"></div>
+      <button class="rail-avatar"><span>FA</span></button>
+    </aside>
+
+    <!-- COL 2 — SIDE PANEL (minimal) -->
+    <aside class="side-panel" aria-label="Workspace navigation">
+      <header class="panel-user">
+        <p class="panel-user__greet">Good morning <span aria-hidden="true">☀️</span></p>
+        <h2 class="panel-user__name">Priya Sharma</h2>
+        <span class="panel-user__role">Finance Admin</span>
+      </header>
+      <nav class="panel-nav">
+        <p class="nav-group__label">MAIN</p>
+        <a class="nav-item" href="../dashboard/"><svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span class="nav-item__label">Dashboard</span></a>
+        <a class="nav-item" href="../master-data/"><svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v6c0 1.7 4 3 9 3s9-1.3 9-3V5M3 11v6c0 1.7 4 3 9 3s9-1.3 9-3v-6"/></svg><span class="nav-item__label">Master Data</span></a>
+        <p class="nav-group__label">OPERATIONS</p>
+        <a class="nav-item" href="../timesheets/"><svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2.5"/><path d="M3 9h18M8 2v4M16 2v4"/></svg><span class="nav-item__label">Timesheets</span><span class="nav-item__badge nav-item__badge--warning">12</span></a>
+        <a class="nav-item is-active" href="./"><svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg><span class="nav-item__label">Invoices</span></a>
+      </nav>
+      <a class="nav-item nav-item--logout" href="#"><svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5M21 12H9"/></svg><span class="nav-item__label">Logout</span></a>
+    </aside>
+
+    <!-- COL 3 — MAIN -->
+    <main class="main" id="main-content" tabindex="-1">
+      <header class="topbar">
+        <div class="topbar__title">
+          <h1 class="topbar__heading">New Invoice</h1>
+          <nav class="breadcrumb">
+            <a href="../dashboard/">INFO Services</a>
+            <span class="breadcrumb__sep" aria-hidden="true">·</span>
+            <a href="./">Invoices</a>
+            <span class="breadcrumb__sep" aria-hidden="true">·</span>
+            <span aria-current="page">New Invoice</span>
+          </nav>
+        </div>
+        <div class="topbar__actions">
+          <a class="btn btn--ghost" href="./">← Back to Invoices</a>
+        </div>
+      </header>
+
+      <div class="content content--md">
+        <!-- 5-step horizontal stepper -->
+        <div class="inv-stepper" id="inv-stepper">
+          <div class="inv-step is-active" data-step="0">
+            <span class="inv-step__dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4"/></svg></span>
+            <span class="inv-step__label">1. Select Entities</span>
+          </div>
+          <span class="inv-step__line"></span>
+          <div class="inv-step" data-step="1">
+            <span class="inv-step__dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2.5"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></span>
+            <span class="inv-step__label">2. Fetch Timesheets</span>
+          </div>
+          <span class="inv-step__line"></span>
+          <div class="inv-step" data-step="2">
+            <span class="inv-step__dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h5"/></svg></span>
+            <span class="inv-step__label">3. Calculate &amp; Tax</span>
+          </div>
+          <span class="inv-step__line"></span>
+          <div class="inv-step" data-step="3">
+            <span class="inv-step__dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></span>
+            <span class="inv-step__label">4. Preview Invoice</span>
+          </div>
+          <span class="inv-step__line"></span>
+          <div class="inv-step" data-step="4">
+            <span class="inv-step__dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>
+            <span class="inv-step__label">5. Generate &amp; Submit</span>
+          </div>
+        </div>
+
+        <!-- Step content slot -->
+        <div id="step-content"></div>
+
+        <!-- Step navigation bar -->
+        <footer class="inv-stepper-foot" id="stepper-foot">
+          <button class="btn btn--ghost" id="step-back" hidden>← Back</button>
+          <a class="btn btn--ghost" href="./">Cancel</a>
+          <button class="btn btn--primary" id="step-next">Next: Fetch Timesheets →</button>
+          <button class="btn btn--primary" id="step-generate" hidden>Generate &amp; Submit for Approval</button>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+  <!-- Toast region -->
+  <div class="toast-region" id="toast-region" role="status" aria-live="polite"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="./new-invoice.js"></script>
+</body>
+</html>

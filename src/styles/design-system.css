@@ -1,0 +1,189 @@
+/* ============================================================================
+ * design-system.css
+ * INFO Services Enterprise Invoicing — design tokens (CSS custom properties).
+ *
+ * Tokens only. Layout / components reference these via var(--*).
+ * Brand: Navy #1a1f5e → Royal #2a52a8 → Azure #3b82c4
+ * ========================================================================== */
+
+:root {
+
+  /* ── Brand core ────────────────────────────────────────────────────────── */
+  --brand-navy:  #1a1f5e;
+  --brand-royal: #2a52a8;
+  --brand-azure: #3b82c4;
+
+  /* ── Brand scales ─────────────────────────────────────────────────────── */
+  --navy-50:  #eef0f7;
+  --navy-100: #d4d8ea;
+  --navy-200: #a0a8cf;
+  --navy-300: #6c79b3;
+  --navy-400: #404b87;
+  --navy-500: #1a1f5e;
+  --navy-600: #161a52;
+  --navy-700: #131745;
+  --navy-800: #0f1238;
+  --navy-900: #0a0d2a;
+
+  --royal-50:  #eef2fb;
+  --royal-100: #d8e0f5;
+  --royal-200: #b6c5e9;
+  --royal-300: #8aa3d8;
+  --royal-400: #5b7cc4;
+  --royal-500: #2a52a8;
+  --royal-600: #234798;
+  --royal-700: #1d3d83;
+  --royal-800: #18336e;
+  --royal-900: #112558;
+
+  --azure-50:  #ebf2f9;
+  --azure-100: #d2e3f1;
+  --azure-200: #a8c8e2;
+  --azure-300: #7daed4;
+  --azure-400: #5095c8;
+  --azure-500: #3b82c4;
+  --azure-600: #2f6ba8;
+  --azure-700: #25588d;
+  --azure-800: #1d4674;
+  --azure-900: #173659;
+
+  /* ── Surface ──────────────────────────────────────────────────────────── */
+  --canvas:       #f4f6fb;
+  --white:        #ffffff;
+  --bg-base:      var(--canvas);
+  --bg-elevated:  var(--white);
+  --bg-subtle:    #fafbfd;
+  --bg-muted:     #eef1f7;
+
+  /* ── Border ───────────────────────────────────────────────────────────── */
+  --border:         #e8ecf4;
+  --border-subtle:  #eef1f7;
+  --border-default: #d3d9e5;
+  --border-strong:  #b8c0d4;
+
+  /* ── Text ─────────────────────────────────────────────────────────────── */
+  --text-primary:   #0f1538;
+  --text-secondary: #4a527a;
+  --text-tertiary:  #8088a5;
+  --text-disabled:  #b8c0d4;
+  --text-on-brand:  #ffffff;
+  --text-link:      var(--royal-500);
+
+  /* ── Status (success / warning / danger / info) ──────────────────────── */
+  --success:        #10b981;
+  --success-fg:     #047857;
+  --success-bg:     #ecfdf5;
+  --success-border: #a7f3d0;
+  --success-soft:   #34d399;   /* light gradient stop */
+  --success-deep:   #059669;   /* dark  gradient stop */
+
+  --warning:        #f59e0b;
+  --warning-fg:     #b45309;
+  --warning-bg:     #fffbeb;
+  --warning-border: #fde68a;
+  --warning-soft:   #fbbf24;   /* amber — sub-labels + gradient light stop */
+  --warning-deep:   #d97706;   /* dark  gradient stop */
+
+  --danger:         #ef4444;
+  --danger-fg:      #b91c1c;
+  --danger-bg:      #fef2f2;
+  --danger-border:  #fca5a5;
+  --danger-soft:    #f87171;   /* light gradient stop */
+  --danger-deep:    #dc2626;   /* dark  gradient stop */
+
+  --info:           var(--azure-500);
+  --info-fg:        var(--azure-700);
+  --info-bg:        var(--azure-50);
+  --info-border:    var(--azure-200);
+
+  /* Custom status used in the aging chart */
+  --orange:         #fb923c;
+  --orange-bg:      #fff7ed;
+
+  /* ── Actions ──────────────────────────────────────────────────────────── */
+  --action-primary:        var(--royal-500);
+  --action-primary-hover:  var(--royal-600);
+  --action-primary-active: var(--royal-700);
+
+  --gradient-brand:        linear-gradient(135deg, var(--brand-navy) 0%, var(--brand-royal) 60%, var(--brand-azure) 100%);
+  --gradient-cta:          linear-gradient(135deg, var(--royal-500) 0%, var(--azure-500) 100%);
+  --gradient-hero:         linear-gradient(135deg, var(--navy-700) 0%, var(--royal-600) 55%, var(--azure-600) 100%);
+  --gradient-card-revenue: linear-gradient(135deg, var(--navy-500), var(--azure-500));
+  --gradient-card-success: linear-gradient(135deg, var(--success-deep), var(--success));
+  --gradient-card-warning: linear-gradient(135deg, var(--warning-deep), var(--warning));
+  --gradient-card-danger:  linear-gradient(135deg, var(--danger-deep),  var(--danger));
+
+  /* ── Radii ────────────────────────────────────────────────────────────── */
+  --radius-xs:   6px;
+  --radius-sm:   10px;
+  --radius-md:   14px;
+  --radius-lg:   18px;
+  --radius-xl:   24px;
+  --radius-full: 9999px;
+
+  /* ── Shadows — navy-tinted ───────────────────────────────────────────── */
+  --shadow-xs: 0 1px 2px rgba(26, 31, 94, 0.05);
+  --shadow-sm: 0 2px 4px rgba(26, 31, 94, 0.06), 0 1px 2px rgba(26, 31, 94, 0.04);
+  --shadow-md: 0 4px 12px rgba(26, 31, 94, 0.08), 0 2px 4px rgba(26, 31, 94, 0.05);
+  --shadow-lg: 0 12px 24px rgba(26, 31, 94, 0.10), 0 4px 8px rgba(26, 31, 94, 0.06);
+  --shadow-xl: 0 24px 48px rgba(26, 31, 94, 0.14), 0 8px 16px rgba(26, 31, 94, 0.08);
+  --shadow-2xl: 0 32px 64px rgba(26, 31, 94, 0.16);
+  --shadow-focus: 0 0 0 3px rgba(42, 82, 168, 0.22);
+  --shadow-focus-error: 0 0 0 3px rgba(239, 68, 68, 0.22);
+
+  /* ── Motion ──────────────────────────────────────────────────────────── */
+  --transition-fast: 120ms;
+  --transition-base: 200ms;
+  --transition-slow: 350ms;
+  --ease-standard:   cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-emphasized: cubic-bezier(0.2, 0, 0, 1);
+
+  /* ── Typography ──────────────────────────────────────────────────────── */
+  --font-body: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  --fw-light:    300;
+  --fw-regular:  400;
+  --fw-medium:   500;
+  --fw-semibold: 600;
+  --fw-bold:     700;
+
+  /* Type scale */
+  --fs-2xs:  10px;
+  --fs-xs:   11px;
+  --fs-sm:   12px;
+  --fs-md:   13px;
+  --fs-base: 14px;
+  --fs-lg:   16px;
+  --fs-xl:   18px;
+  --fs-2xl:  20px;
+  --fs-3xl:  24px;
+  --fs-4xl:  30px;
+  --fs-5xl:  36px;
+
+  --lh-tight:   1.15;
+  --lh-snug:    1.3;
+  --lh-normal:  1.5;
+  --lh-relaxed: 1.7;
+
+  /* ── Spacing — 4px base ──────────────────────────────────────────────── */
+  --space-0:  0;
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-7:  28px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* ── Layout constants ────────────────────────────────────────────────── */
+  --rail-width:    72px;
+  --panel-width:   260px;
+  --topbar-height: 64px;
+  --content-pad:   24px;
+  --max-content:   1640px;
+}

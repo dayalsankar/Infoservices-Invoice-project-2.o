@@ -1,20 +1,42 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Infoservices Invoice</title>
-    <!-- Google Fonts: Inter (body) + Plus Jakarta Sans (headings) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#1a1f5e" />
+  <title>INFO Services Enterprise Invoicing Platform</title>
+
+  <!-- Send browsers directly to the Finance Dashboard.
+       The non-JS fallback at the bottom keeps the page reachable if scripts
+       are disabled or the redirect hasn't fired yet. -->
+  <meta http-equiv="refresh" content="0; url=/src/pages/dashboard/index.html" />
+  <script>
+    window.location.replace('/src/pages/dashboard/index.html');
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    html, body { margin: 0; padding: 0; height: 100%; background: #f4f6fb; font-family: 'Poppins', system-ui, sans-serif; color: #0f1538; }
+    .wrap { display: grid; place-items: center; min-height: 100vh; text-align: center; padding: 24px; }
+    .card { max-width: 480px; padding: 32px; border-radius: 14px; background: #fff; border: 1px solid #e8ecf4; box-shadow: 0 4px 12px rgba(26,31,94,0.08); }
+    h1 { font-size: 20px; font-weight: 600; margin: 0 0 12px; letter-spacing: -0.01em; }
+    p { font-size: 14px; color: #4a527a; line-height: 1.55; margin: 0 0 20px; }
+    a { display: inline-block; padding: 10px 20px; border-radius: 10px; background: linear-gradient(135deg, #2a52a8, #3b82c4); color: #fff; text-decoration: none; font-weight: 500; font-size: 13px; box-shadow: 0 4px 12px rgba(42,82,168,0.32); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1>Loading Finance Dashboard…</h1>
+      <p>If you aren't redirected automatically, click below.</p>
+      <a href="/src/pages/dashboard/index.html">Open Finance Dashboard →</a>
+    </div>
+  </div>
+</body>
 </html>

@@ -1,0 +1,42 @@
+<!--
+  kpi-card.html
+  ─────────────────────────────────────────────────────────────────────────────
+  Reusable KPI card. Four variants ship with different icon-bg + stripe color:
+    .kpi__icon--azure   + .kpi__stripe              → revenue / generic
+    .kpi__icon--success + .kpi__stripe--success     → collected / positive
+    .kpi__icon--warning + .kpi__stripe--warning     → outstanding / caution
+    .kpi__icon--danger  + .kpi__stripe--danger      → overdue / error
+
+  Trend pill:
+    .trend--success  → upward / good
+    .trend--danger   → downward / alert
+
+  Currency-aware values use data-currency-amount="…" so dashboard.js can
+  re-format them when the topbar currency toggle flips.
+-->
+
+<article class="kpi">
+
+  <header class="kpi__head">
+    <span class="kpi__icon kpi__icon--azure">
+      <!-- inline SVG: document / receipt icon, 18×18 -->
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+        <path d="M14 2v6h6M9 13h6M9 17h4"/>
+      </svg>
+    </span>
+
+    <span class="trend trend--success">
+      <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M7 17l9-9M9 8h7v7"/>
+      </svg>
+      <span class="num">18.4%</span>
+    </span>
+  </header>
+
+  <p class="kpi__label">Total Invoices (YTD)</p>
+  <p class="kpi__value num">1,248</p>
+  <p class="kpi__sub"><span class="num" data-currency-amount="48600000">₹4.86 Cr</span> total value</p>
+
+  <span class="kpi__stripe" aria-hidden="true"></span>
+</article>
