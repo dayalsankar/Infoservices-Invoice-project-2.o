@@ -1,3 +1,29 @@
+/* ── SESSION GUARD ─ runs before anything else ──────────────────────────── */
+(function guardSession() {
+  const raw = sessionStorage.getItem('is_demo_session');
+  if (!raw) { window.location.replace('/src/pages/login/index.html'); return; }
+  try {
+    const u = JSON.parse(raw);
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.panel-user__name, [data-user="name"]').forEach(el => el.textContent = u.name);
+      document.querySelectorAll('.panel-user__role, [data-user="role"]').forEach(el => {
+        const svg = el.querySelector('svg');
+        el.innerHTML = (svg ? svg.outerHTML : '') + ' ' + u.role;
+      });
+      document.querySelectorAll('.rail-avatar span, [data-user="initials"]').forEach(el => {
+        el.textContent = u.initials || (u.name || '').slice(0, 2).toUpperCase();
+      });
+      document.querySelectorAll('.nav-item--logout, [data-action="logout"]').forEach(el => {
+        el.addEventListener('click', e => {
+          e.preventDefault();
+          sessionStorage.removeItem('is_demo_session');
+          window.location.replace('/src/pages/login/index.html');
+        });
+      });
+    });
+  } catch (e) {}
+})();
+
 /* ============================================================================
  * invoices.js — Invoice Management
  * Vanilla JS. 6-tab list, status-colored row borders, overdue pulse,

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#1a1f5e" />
+  <title>Super Admin Dashboard · INFO Services</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../sa-shell.css" />
+  <link rel="stylesheet" href="./sa-dashboard.css" />
+</head>
+<body>
+  <div class="sa-app">
+
+    <!-- ── COL 1 — ICON RAIL ──────────────────────────────────────────── -->
+    <aside class="sa-rail" aria-label="Primary navigation rail">
+      <div class="sa-rail__logo" aria-label="INFO Services">IS</div>
+      <a class="sa-rail__item is-active" href="./" aria-label="Dashboard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></a>
+      <a class="sa-rail__item" href="../users/" aria-label="Users"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg></a>
+      <a class="sa-rail__item" href="../roles/" aria-label="Roles"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></a>
+      <a class="sa-rail__item" href="../permissions/" aria-label="Permissions"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></a>
+      <span class="sa-rail__divider"></span>
+      <a class="sa-rail__item" href="../system-config/" aria-label="System Config"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9"/></svg></a>
+      <a class="sa-rail__item" href="../integrations/" aria-label="Integrations"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></a>
+      <a class="sa-rail__item has-dot" href="../security/" aria-label="Security"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16" r="1.5"/></svg></a>
+      <a class="sa-rail__item" href="../audit/" aria-label="Audit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h4"/></svg></a>
+      <span class="sa-rail__spacer"></span>
+      <button class="sa-rail__avatar" aria-label="Account"><span>AM</span></button>
+    </aside>
+
+    <!-- ── COL 2 — SIDE PANEL ─────────────────────────────────────────── -->
+    <aside class="sa-panel" aria-label="Workspace navigation">
+      <header class="sa-panel__user">
+        <p class="sa-panel__user-name" data-user="name">Arjun Mehta</p>
+        <span class="sa-panel__user-role" data-user="role"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Super Admin</span>
+      </header>
+
+      <nav class="sa-panel__nav" aria-label="Main navigation">
+        <p class="sa-panel__group-label">Platform</p>
+        <a class="sa-nav-item is-active" href="./" data-sa-nav="dashboard">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+          <span class="sa-nav-item__label">Dashboard</span>
+        </a>
+        <a class="sa-nav-item" href="../users/" data-sa-nav="users">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg>
+          <span class="sa-nav-item__label">Users</span>
+          <span class="sa-nav-item__badge sa-nav-item__badge--warning">34</span>
+        </a>
+        <a class="sa-nav-item" href="../roles/" data-sa-nav="roles">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span class="sa-nav-item__label">Roles</span>
+        </a>
+        <a class="sa-nav-item" href="../permissions/" data-sa-nav="permissions">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <span class="sa-nav-item__label">Permissions</span>
+        </a>
+
+        <p class="sa-panel__group-label" style="margin-top:10px">System</p>
+        <a class="sa-nav-item" href="../system-config/" data-sa-nav="config">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9"/></svg>
+          <span class="sa-nav-item__label">System Config</span>
+        </a>
+        <a class="sa-nav-item" href="../integrations/" data-sa-nav="integrations">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+          <span class="sa-nav-item__label">Integrations</span>
+        </a>
+        <a class="sa-nav-item" href="../security/" data-sa-nav="security">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16" r="1.5"/></svg>
+          <span class="sa-nav-item__label">Security</span>
+          <span class="sa-nav-item__badge">2</span>
+        </a>
+        <a class="sa-nav-item" href="../audit/" data-sa-nav="audit">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h4"/></svg>
+          <span class="sa-nav-item__label">Audit Log</span>
+        </a>
+      </nav>
+
+      <div class="sa-panel__logout">
+        <a class="sa-nav-item nav-item--logout" href="#" data-action="logout">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5M21 12H9"/></svg>
+          <span class="sa-nav-item__label">Logout</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- ── COL 3 — MAIN ───────────────────────────────────────────────── -->
+    <main class="sa-main" id="sa-main">
+
+      <!-- Topbar -->
+      <header class="sa-topbar">
+        <div class="sa-topbar__title">
+          <h1>Platform Overview</h1>
+        </div>
+        <div class="sa-topbar__actions">
+          <label class="sa-search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+            <input id="sa-global-search" type="search" placeholder="Search users, roles, settings…" aria-label="Search" />
+          </label>
+          <button class="sa-icon-btn has-dot" aria-label="Notifications">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+          </button>
+          <button class="sa-btn sa-btn--primary" id="sa-quick-add-user">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+            Add User
+          </button>
+        </div>
+      </header>
+
+      <!-- Content -->
+      <div class="sa-content">
+
+        <!-- Stats strip (4 KPIs) -->
+        <section class="sa-stats" aria-label="Platform statistics">
+          <div class="sa-stat" data-stat="users">
+            <div class="sa-stat__icon sa-stat__icon--royal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+            <div class="sa-stat__body">
+              <p class="sa-stat__label">Total Users</p>
+              <p class="sa-stat__value">34</p>
+              <p class="sa-stat__sub sa-stat__sub--success">↑ 4 new this month</p>
+            </div>
+          </div>
+          <div class="sa-stat" data-stat="sessions">
+            <div class="sa-stat__icon sa-stat__icon--success"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33"/></svg></div>
+            <div class="sa-stat__body">
+              <p class="sa-stat__label">Active Sessions</p>
+              <p class="sa-stat__value">12</p>
+              <p class="sa-stat__sub">Live now</p>
+            </div>
+          </div>
+          <div class="sa-stat" data-stat="failed">
+            <div class="sa-stat__icon sa-stat__icon--danger"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg></div>
+            <div class="sa-stat__body">
+              <p class="sa-stat__label">Failed Logins (24h)</p>
+              <p class="sa-stat__value">2</p>
+              <p class="sa-stat__sub sa-stat__sub--warning">Action required</p>
+            </div>
+          </div>
+          <div class="sa-stat" data-stat="health">
+            <div class="sa-stat__icon sa-stat__icon--success"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+            <div class="sa-stat__body">
+              <p class="sa-stat__label">System Health</p>
+              <p class="sa-stat__value">99.8%</p>
+              <p class="sa-stat__sub sa-stat__sub--success">All systems operational</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Top row: System Health + Quick Actions -->
+        <section class="sa-grid-2to1">
+
+          <!-- System Health card -->
+          <article class="sa-card">
+            <header class="sa-card__head">
+              <div>
+                <h3 class="sa-card__title">System Health</h3>
+                <p class="sa-card__sub">All services status · Last checked 2 min ago</p>
+              </div>
+              <button class="sa-btn sa-btn--sm sa-btn--ghost" id="sa-refresh-health">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+                Refresh
+              </button>
+            </header>
+            <ul class="sa-service-list" id="sa-services"></ul>
+          </article>
+
+          <!-- Quick Actions -->
+          <article class="sa-card">
+            <header class="sa-card__head">
+              <div>
+                <h3 class="sa-card__title">Quick Actions</h3>
+                <p class="sa-card__sub">Common platform tasks</p>
+              </div>
+            </header>
+            <div class="sa-quick-actions">
+              <button class="sa-qa-btn sa-qa-btn--primary" data-action="add-user">
+                <span class="sa-qa-btn__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg></span>
+                <span class="sa-qa-btn__label">Add User</span>
+              </button>
+              <button class="sa-qa-btn" data-action="create-role">
+                <span class="sa-qa-btn__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 8v8M8 12h8"/></svg></span>
+                <span class="sa-qa-btn__label">Create Role</span>
+              </button>
+              <button class="sa-qa-btn" data-action="view-audit">
+                <span class="sa-qa-btn__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h4"/></svg></span>
+                <span class="sa-qa-btn__label">View Audit Log</span>
+              </button>
+            </div>
+          </article>
+        </section>
+
+        <!-- Middle row: Recent Users -->
+        <section class="sa-card">
+          <header class="sa-card__head">
+            <div>
+              <h3 class="sa-card__title">Recent Users</h3>
+              <p class="sa-card__sub">Last 5 created accounts</p>
+            </div>
+            <a class="sa-card__link" href="../users/">View all →</a>
+          </header>
+          <div class="sa-table-wrap">
+            <table class="sa-table" id="sa-recent-users">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Role</th>
+                  <th>Email</th>
+                  <th>Status</th>
+                  <th>Created</th>
+                </tr>
+              </thead>
+              <tbody id="sa-recent-users-body"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Bottom row: Audit Activity + Integration Status -->
+        <section class="sa-grid-2to1">
+
+          <!-- Audit Activity feed -->
+          <article class="sa-card">
+            <header class="sa-card__head">
+              <div>
+                <h3 class="sa-card__title">Audit Activity</h3>
+                <p class="sa-card__sub">Last 10 platform events</p>
+              </div>
+              <a class="sa-card__link" href="../audit/">Full log →</a>
+            </header>
+            <ul class="sa-feed" id="sa-feed"></ul>
+          </article>
+
+          <!-- Integration Status -->
+          <article class="sa-card">
+            <header class="sa-card__head">
+              <div>
+                <h3 class="sa-card__title">Integrations</h3>
+                <p class="sa-card__sub">4 connected services</p>
+              </div>
+              <a class="sa-card__link" href="../integrations/">Manage →</a>
+            </header>
+            <ul class="sa-integrations" id="sa-integrations"></ul>
+          </article>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Toast region -->
+  <div class="sa-toast-region" id="sa-toast-region" aria-live="polite"></div>
+
+  <script type="module" src="./sa-dashboard.js"></script>
+</body>
+</html>

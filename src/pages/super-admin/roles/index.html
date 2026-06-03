@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Roles · Super Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../sa-shell.css" />
+  <script>
+    (function(){var s=sessionStorage.getItem('is_demo_session');if(!s){window.location.replace('/src/pages/login/index.html');}})();
+  </script>
+</head>
+<body>
+  <div class="sa-app">
+    <aside class="sa-rail">
+      <div class="sa-rail__logo">IS</div>
+      <a class="sa-rail__item" href="../dashboard/" aria-label="Dashboard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></a>
+      <a class="sa-rail__item" href="../users/" aria-label="Users"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></a>
+      <a class="sa-rail__item is-active" href="../roles/" aria-label="Roles"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></a>
+      <a class="sa-rail__item" href="../permissions/" aria-label="Permissions"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></a>
+      <span class="sa-rail__divider"></span>
+      <a class="sa-rail__item" href="../system-config/" aria-label="System Config"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/></svg></a>
+      <a class="sa-rail__item" href="../integrations/" aria-label="Integrations"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></a>
+      <a class="sa-rail__item" href="../security/" aria-label="Security"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></a>
+      <a class="sa-rail__item" href="../audit/" aria-label="Audit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></a>
+      <span class="sa-rail__spacer"></span>
+      <button class="sa-rail__avatar"><span>AM</span></button>
+    </aside>
+    <aside class="sa-panel">
+      <header class="sa-panel__user">
+        <p class="sa-panel__user-name" data-user="name">Arjun Mehta</p>
+        <span class="sa-panel__user-role" data-user="role"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Super Admin</span>
+      </header>
+      <nav class="sa-panel__nav">
+        <p class="sa-panel__group-label">Platform</p>
+        <a class="sa-nav-item" href="../dashboard/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span class="sa-nav-item__label">Dashboard</span></a>
+        <a class="sa-nav-item" href="../users/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><span class="sa-nav-item__label">Users</span></a>
+        <a class="sa-nav-item is-active" href="../roles/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span class="sa-nav-item__label">Roles</span></a>
+        <a class="sa-nav-item" href="../permissions/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><span class="sa-nav-item__label">Permissions</span></a>
+        <p class="sa-panel__group-label" style="margin-top:10px">System</p>
+        <a class="sa-nav-item" href="../system-config/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/></svg><span class="sa-nav-item__label">System Config</span></a>
+        <a class="sa-nav-item" href="../integrations/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/></svg><span class="sa-nav-item__label">Integrations</span></a>
+        <a class="sa-nav-item" href="../security/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><span class="sa-nav-item__label">Security</span></a>
+        <a class="sa-nav-item" href="../audit/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg><span class="sa-nav-item__label">Audit Log</span></a>
+      </nav>
+      <div class="sa-panel__logout">
+        <a class="sa-nav-item" href="#" data-action="logout"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5M21 12H9"/></svg><span class="sa-nav-item__label">Logout</span></a>
+      </div>
+    </aside>
+    <main class="sa-main">
+      <header class="sa-topbar">
+        <div class="sa-topbar__title"><h1>Roles</h1></div>
+        <div class="sa-topbar__actions">
+          <button class="sa-btn sa-btn--ghost" onclick="history.back()">← Back to Dashboard</button>
+        </div>
+      </header>
+      <div class="sa-content">
+        <div class="sa-placeholder">
+          <div class="sa-placeholder__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <h2 class="sa-placeholder__title">Roles Module</h2>
+          <p class="sa-placeholder__sub">Define role templates with grouped permission sets. Coming soon.</p>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script>
+    document.querySelectorAll('[data-action="logout"]').forEach(el=>{el.addEventListener('click',e=>{e.preventDefault();sessionStorage.removeItem('is_demo_session');window.location.replace('/src/pages/login/index.html');});});
+  </script>
+</body>
+</html>

@@ -7,7 +7,7 @@ const SESSION_KEY = 'is_demo_session';
 
 const ROLE_DATA = {
   'finance-admin':     { name: 'Priya Sharma',    role: 'Finance Admin',     initials: 'PS', email: 'priya.sharma@infoservices.com',    redirect: '/src/pages/dashboard/index.html' },
-  'super-admin':       { name: 'Arjun Mehta',     role: 'Super Admin',       initials: 'AM', email: 'arjun.mehta@infoservices.com',     redirect: '/src/pages/dashboard/index.html' },
+  'super-admin':       { name: 'Arjun Mehta',     role: 'Super Admin',       initials: 'AM', email: 'arjun.mehta@infoservices.com',     redirect: '/src/pages/super-admin/dashboard/index.html' },
   'delivery-manager':  { name: 'Kavitha Nair',    role: 'Delivery Manager',  initials: 'KN', email: 'kavitha.nair@infoservices.com',    redirect: '/src/pages/timesheets/index.html' },
   'signing-authority': { name: 'Rajesh Kumar',    role: 'Signing Authority', initials: 'RK', email: 'rajesh.kumar@infoservices.com',    redirect: '/src/pages/approvals/index.html' },
   'consultant':        { name: 'Rahul Verma',     role: 'Consultant',        initials: 'RV', email: 'rahul.verma@infoservices.com',     redirect: '/src/pages/timesheets/index.html' },
