@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#1a1f5e" />
+  <title>Reports & Analytics · INFO Services Invoicing Platform</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../../styles/design-system.css" />
+  <link rel="stylesheet" href="../../styles/globals.css" />
+  <link rel="stylesheet" href="../dashboard/dashboard.css" />
+  <link rel="stylesheet" href="../master-data/master-data.css" />
+  <link rel="stylesheet" href="../timesheets/timesheets.css" />
+  <link rel="stylesheet" href="../invoices/invoices.css" />
+  <link rel="stylesheet" href="../approvals/approvals.css" />
+  <link rel="stylesheet" href="../payments/payments.css" />
+  <link rel="stylesheet" href="./reports.css" />
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body class="is-loading">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="app">
+    <!-- ── ICON RAIL ─────────────────────────────────────────────────────── -->
+    <aside class="icon-rail" aria-label="Primary navigation rail">
+      <a class="rail-logo" href="../dashboard/" aria-label="INFO Services home"><span class="rail-logo__mark">IS</span></a>
+      <ul class="rail-group" role="menu">
+        <li role="none"><a class="rail-item" href="../dashboard/" aria-label="Dashboard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></a></li>
+        <li role="none"><a class="rail-item" href="../master-data/" aria-label="Master Data"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v6c0 1.7 4 3 9 3s9-1.3 9-3V5M3 11v6c0 1.7 4 3 9 3s9-1.3 9-3v-6"/></svg></a></li>
+        <li role="none"><a class="rail-item" href="../timesheets/" aria-label="Timesheets"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2.5"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></a></li>
+        <li role="none"><a class="rail-item" href="../invoices/" aria-label="Invoices"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></a></li>
+      </ul>
+      <span class="rail-divider" role="separator"></span>
+      <ul class="rail-group" role="menu">
+        <li role="none"><a class="rail-item has-dot" href="../approvals/" aria-label="Approvals"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.1V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg></a></li>
+        <li role="none"><a class="rail-item" href="../payments/" aria-label="Payments"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2.5"/><path d="M2 10h20"/></svg></a></li>
+        <li role="none"><a class="rail-item is-active" href="./" aria-label="Reports"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 16V12M12 16V8M17 16v-6"/></svg></a></li>
+        <li role="none"><button class="rail-item has-dot" aria-label="Notifications"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></button></li>
+      </ul>
+      <span class="rail-divider" role="separator"></span>
+      <ul class="rail-group" role="menu">
+        <li role="none"><button class="rail-item" aria-label="Audit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></button></li>
+        <li role="none"><button class="rail-item" aria-label="Settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/></svg></button></li>
+      </ul>
+      <div class="rail-spacer"></div>
+      <button class="rail-avatar" aria-label="Account menu"><span>FA</span></button>
+    </aside>
+
+    <!-- ── SIDE PANEL ────────────────────────────────────────────────────── -->
+    <aside class="side-panel" aria-label="Workspace navigation">
+      <header class="panel-user">
+        <h2 class="panel-user__name">Priya Sharma</h2>
+        <span class="panel-user__role"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg> Finance Admin</span>
+      </header>
+      <nav class="panel-nav" aria-label="Main navigation">
+        <p class="nav-group__label">MAIN</p>
+        <a class="nav-item" href="../dashboard/" data-nav="dashboard"><svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span class="nav-item__label">Dashboard</span></a>
+        <a class="nav-item" href="../master-data/" data-nav="master"><svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v6c0 1.7 4 3 9 3s9-1.3 9-3V5M3 11v6c0 1.7 4 3 9 3s9-1.3 9-3v-6"/></svg><span class="nav-item__label">Master Data</span></a>
+        <p class="nav-group__label">OPERATIONS</p>
+        <a class="nav-item" href="../timesheets/" data-nav="timesheets"><svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2.5"/><path d="M3 9h18M8 2v4M16 2v4"/></svg><span class="nav-item__label">Timesheets</span><span class="nav-item__badge nav-item__badge--warning">12</span></a>
+        <a class="nav-item" href="../invoices/" data-nav="invoices"><svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg><span class="nav-item__label">Invoices</span><span class="nav-item__badge nav-item__badge--danger">5</span></a>
+        <a class="nav-item" href="../approvals/" data-nav="approvals"><svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.1V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg><span class="nav-item__label">Approvals</span><span class="nav-item__badge nav-item__badge--danger">18</span></a>
+        <a class="nav-item" href="../payments/" data-nav="payments"><svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2.5"/><path d="M2 10h20"/></svg><span class="nav-item__label">Payments</span><span class="nav-item__badge nav-item__badge--danger">2</span></a>
+        <p class="nav-group__label">INTELLIGENCE</p>
+        <a class="nav-item is-active" href="./" data-nav="reports"><svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 16V12M12 16V8M17 16v-6"/></svg><span class="nav-item__label">Reports &amp; Analytics</span></a>
+        <a class="nav-item" href="#" data-nav="notifications"><svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg><span class="nav-item__label">Notifications</span><span class="nav-item__badge nav-item__badge--danger">7</span></a>
+        <p class="nav-group__label">GOVERNANCE</p>
+        <a class="nav-item" href="#" data-nav="audit"><svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span class="nav-item__label">Audit &amp; Compliance</span></a>
+        <a class="nav-item" href="#" data-nav="settings"><svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/></svg><span class="nav-item__label">System Config</span></a>
+      </nav>
+      <a class="nav-item nav-item--logout" href="#"><svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5M21 12H9"/></svg><span class="nav-item__label">Logout</span></a>
+    </aside>
+
+    <!-- ── MAIN (with page-level scroll like Payments) ───────────────────── -->
+    <main class="main rpt-main" id="main-content" tabindex="-1">
+
+      <!-- Topbar (sticky) -->
+      <header class="topbar rpt-topbar">
+        <div class="topbar__title">
+          <h1 class="topbar__heading">Reports &amp; Analytics</h1>
+        </div>
+        <div class="topbar__actions">
+          <div class="rpt-select">
+            <label class="sr-only" for="period-select">Period</label>
+            <select id="period-select" class="rpt-select__field">
+              <option value="this-week">This Week</option>
+              <option value="this-month" selected>This Month · Jun 2026</option>
+              <option value="last-month">Last Month · May 2026</option>
+              <option value="this-quarter">This Quarter · Q2 2026</option>
+              <option value="last-quarter">Last Quarter · Q1 2026</option>
+              <option value="ytd">This Year · 2026 YTD</option>
+              <option value="last-year">Last Year · 2025</option>
+              <option value="custom">Custom Range…</option>
+            </select>
+          </div>
+          <div class="rpt-select">
+            <label class="sr-only" for="compare-select">Compare</label>
+            <select id="compare-select" class="rpt-select__field">
+              <option value="off" selected>Compare: Off</option>
+              <option value="last-month">vs Last Month</option>
+              <option value="last-quarter">vs Last Quarter</option>
+              <option value="last-year">vs Same Period 2025</option>
+            </select>
+          </div>
+          <button class="btn btn--ghost" id="btn-filter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg> Filter</button>
+          <button class="btn btn--ghost" id="btn-refresh" title="Last updated: just now"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg> Refresh</button>
+          <button class="btn btn--ghost" id="btn-schedule"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 10h18M8 2v4M16 2v4"/></svg> Schedule</button>
+          <button class="btn btn--primary" id="btn-export"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5M12 15V3"/></svg> Export Report</button>
+        </div>
+      </header>
+
+      <!-- Active filter chips (below topbar) -->
+      <div class="rpt-active-chips" id="rpt-active-chips" hidden></div>
+
+      <!-- Sub-tabs -->
+      <nav class="md-tabs ts-tabs inv-tabs apv-tabs pay-tabs rpt-tabs" role="tablist" aria-label="Report categories">
+        <button class="md-tab is-active" role="tab" data-tab="revenue" aria-selected="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 16V12M12 16V8M17 16v-6"/></svg><span>Revenue Report</span></button>
+        <button class="md-tab" role="tab" data-tab="invoice"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg><span>Invoice Report</span></button>
+        <button class="md-tab" role="tab" data-tab="payment"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2.5"/><path d="M2 10h20"/></svg><span>Payment Report</span></button>
+        <button class="md-tab" role="tab" data-tab="utilization"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg><span>Utilization Report</span></button>
+        <button class="md-tab" role="tab" data-tab="client"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg><span>Client Report</span></button>
+        <button class="md-tab" role="tab" data-tab="tax"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="5" x2="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg><span>Tax Report</span></button>
+        <button class="md-tab" role="tab" data-tab="operational"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4"/></svg><span>Operational Report</span></button>
+      </nav>
+
+      <!-- Global summary strip (always visible — 6 micro KPI cards) -->
+      <section class="rpt-global-strip" aria-label="Global summary">
+        <button class="rpt-mini-kpi rpt-mini-kpi--navy" data-jump="revenue">
+          <p class="rpt-mini-kpi__label">Total Revenue (YTD)</p>
+          <p class="rpt-mini-kpi__value">₹4.86 Cr</p>
+          <p class="rpt-mini-kpi__trend rpt-mini-kpi__trend--success">↑ 18.4% vs 2025</p>
+        </button>
+        <button class="rpt-mini-kpi rpt-mini-kpi--success" data-jump="revenue">
+          <p class="rpt-mini-kpi__label">Collected</p>
+          <p class="rpt-mini-kpi__value">₹36.8L</p>
+          <p class="rpt-mini-kpi__trend rpt-mini-kpi__trend--success">↑ 12.1% · Jun 2026</p>
+        </button>
+        <button class="rpt-mini-kpi rpt-mini-kpi--warning" data-jump="payment">
+          <p class="rpt-mini-kpi__label">Outstanding</p>
+          <p class="rpt-mini-kpi__value">₹11.45L</p>
+          <p class="rpt-mini-kpi__trend">12 invoices pending</p>
+        </button>
+        <button class="rpt-mini-kpi rpt-mini-kpi--royal" data-jump="payment">
+          <p class="rpt-mini-kpi__label">Collection Rate</p>
+          <p class="rpt-mini-kpi__value">87.4%</p>
+          <p class="rpt-mini-kpi__trend rpt-mini-kpi__trend--success">↑ 2.3% vs last month</p>
+        </button>
+        <button class="rpt-mini-kpi rpt-mini-kpi--azure" data-jump="utilization">
+          <p class="rpt-mini-kpi__label">Billable Hours</p>
+          <p class="rpt-mini-kpi__value">3,240 hrs</p>
+          <p class="rpt-mini-kpi__trend rpt-mini-kpi__trend--success">↑ 8.4% · Jun 2026</p>
+        </button>
+        <button class="rpt-mini-kpi rpt-mini-kpi--navy" data-jump="utilization">
+          <p class="rpt-mini-kpi__label">Active Consultants</p>
+          <p class="rpt-mini-kpi__value">28<span class="rpt-mini-kpi__sub">/34</span></p>
+          <p class="rpt-mini-kpi__trend">Utilization: 82%</p>
+        </button>
+      </section>
+
+      <!-- Tab panel host -->
+      <section class="rpt-panel" id="rpt-panel" aria-live="polite"></section>
+
+    </main>
+  </div>
+
+  <!-- ── MODAL HOST ────────────────────────────────────────────────────── -->
+  <div class="md-modal-overlay apv-modal-overlay" id="modal-overlay" hidden></div>
+  <div class="md-modal apv-modal rpt-modal" id="rpt-modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="md-modal__inner" id="modal-inner"></div>
+  </div>
+
+  <!-- ── SCHEDULE PANEL (right slide) ──────────────────────────────────── -->
+  <div class="md-drawer-overlay apv-overlay" id="schedule-overlay" hidden></div>
+  <aside class="md-drawer rpt-schedule" id="rpt-schedule" aria-label="Schedule reports" aria-hidden="true">
+    <div class="md-drawer__inner" id="schedule-inner"></div>
+  </aside>
+
+  <!-- ── FILTER POPOVER ────────────────────────────────────────────────── -->
+  <div class="apv-filter-popover rpt-filter-popover" id="rpt-filter-popover" role="dialog" aria-label="Filter reports" hidden>
+    <div class="apv-filter-popover__header">
+      <span>Filter Reports</span>
+      <button class="apv-filter-popover__close" id="rpt-filter-close">×</button>
+    </div>
+    <div class="apv-filter-popover__body">
+      <div class="apv-filter-group">
+        <p class="apv-filter-group__label">Company</p>
+        <select class="apv-filter-select" id="rpt-filter-company">
+          <option value="all">All Companies</option>
+          <option>INFO Services Pvt Ltd</option>
+          <option>INFO Tech Solutions</option>
+          <option>INFO Global Services</option>
+          <option>INFO Consulting LLP</option>
+        </select>
+      </div>
+      <div class="apv-filter-group">
+        <p class="apv-filter-group__label">Client</p>
+        <select class="apv-filter-select" id="rpt-filter-client">
+          <option value="all">All Clients</option>
+          <option>Accenture India</option>
+          <option>TCS Limited</option>
+          <option>Infosys BPM</option>
+          <option>Cognizant Tech</option>
+          <option>Wipro Tech</option>
+          <option>HCL Methods</option>
+        </select>
+      </div>
+      <div class="apv-filter-group">
+        <p class="apv-filter-group__label">Tax Type</p>
+        <div class="apv-filter-chips" id="rpt-filter-tax">
+          <button class="chip is-active" data-tax="all">All</button>
+          <button class="chip" data-tax="igst">IGST 18%</button>
+          <button class="chip" data-tax="cgst">CGST+SGST</button>
+          <button class="chip" data-tax="sez">SEZ-LUT</button>
+        </div>
+      </div>
+    </div>
+    <div class="apv-filter-popover__footer">
+      <button class="btn btn--ghost" id="rpt-filter-reset">Reset</button>
+      <button class="btn btn--primary" id="rpt-filter-apply">Apply Filters</button>
+    </div>
+  </div>
+
+  <!-- ── TOAST REGION ──────────────────────────────────────────────────── -->
+  <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="false"></div>
+
+  <script type="module" src="./reports.js"></script>
+</body>
+</html>

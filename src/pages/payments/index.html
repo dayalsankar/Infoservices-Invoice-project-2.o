@@ -38,7 +38,7 @@
       <ul class="rail-group" role="menu">
         <li role="none"><a class="rail-item has-dot" href="../approvals/" aria-label="Approvals"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.1V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg></a></li>
         <li role="none"><a class="rail-item is-active" href="./" aria-label="Payments"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2.5"/><path d="M2 10h20"/></svg></a></li>
-        <li role="none"><button class="rail-item" aria-label="Reports"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 16V12M12 16V8M17 16v-6"/></svg></button></li>
+        <li role="none"><a class="rail-item" href="../reports/" aria-label="Reports"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 16V12M12 16V8M17 16v-6"/></svg></a></li>
         <li role="none"><button class="rail-item has-dot" aria-label="Notifications"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></button></li>
       </ul>
       <span class="rail-divider" role="separator"></span>
@@ -53,7 +53,6 @@
     <!-- ── SIDE PANEL ────────────────────────────────────────────────────── -->
     <aside class="side-panel" aria-label="Workspace navigation">
       <header class="panel-user">
-        <p class="panel-user__greet">Good morning <span aria-hidden="true">☀️</span></p>
         <h2 class="panel-user__name">Priya Sharma</h2>
         <span class="panel-user__role"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg> Finance Admin</span>
       </header>
@@ -67,7 +66,7 @@
         <a class="nav-item" href="../approvals/" data-nav="approvals"><svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.1V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg><span class="nav-item__label">Approvals</span><span class="nav-item__badge nav-item__badge--danger">18</span></a>
         <a class="nav-item is-active" href="./" data-nav="payments"><svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2.5"/><path d="M2 10h20"/></svg><span class="nav-item__label">Payments</span><span class="nav-item__badge nav-item__badge--danger" id="nav-badge-pay">2</span></a>
         <p class="nav-group__label">INTELLIGENCE</p>
-        <a class="nav-item" href="#" data-nav="reports"><svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 16V12M12 16V8M17 16v-6"/></svg><span class="nav-item__label">Reports &amp; Analytics</span></a>
+        <a class="nav-item" href="../reports/" data-nav="reports"><svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 16V12M12 16V8M17 16v-6"/></svg><span class="nav-item__label">Reports &amp; Analytics</span></a>
         <a class="nav-item" href="#" data-nav="notifications"><svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg><span class="nav-item__label">Notifications</span><span class="nav-item__badge nav-item__badge--danger">7</span></a>
         <p class="nav-group__label">GOVERNANCE</p>
         <a class="nav-item" href="#" data-nav="audit"><svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span class="nav-item__label">Audit &amp; Compliance</span></a>
@@ -82,11 +81,6 @@
       <header class="topbar pay-topbar">
         <div class="topbar__title">
           <h1 class="topbar__heading">Payment Management</h1>
-          <nav class="breadcrumb" aria-label="Breadcrumb">
-            <a href="../dashboard/">INFO Services</a>
-            <span class="breadcrumb__sep" aria-hidden="true">·</span>
-            <span aria-current="page">Payment Management</span>
-          </nav>
         </div>
         <div class="topbar__actions">
           <label class="topbar__search">
@@ -133,9 +127,6 @@
           <div class="md-stat__body">
             <p class="md-stat__label">Total Collected</p>
             <p class="md-stat__value" id="stat-val-collected" data-inr="3680000">₹36.8L</p>
-            <p class="md-stat__sub" id="stat-sub-collected">$44,120 · June 2026</p>
-            <div class="pay-spark" id="spark-collected"></div>
-            <p class="md-stat__delta md-stat__delta--success">↑ 12.1% vs May</p>
           </div>
         </button>
         <button class="md-stat pay-stat--warning" data-stat="outstanding">
@@ -143,8 +134,6 @@
           <div class="md-stat__body">
             <p class="md-stat__label">Outstanding Balance</p>
             <p class="md-stat__value" id="stat-val-outstanding" data-inr="1145000">₹11.45L</p>
-            <p class="md-stat__sub">12 invoices pending</p>
-            <p class="md-stat__delta">↓ ₹2.1L from last month</p>
           </div>
         </button>
         <button class="md-stat pay-stat--danger" data-stat="overdue">
@@ -152,28 +141,13 @@
           <div class="md-stat__body">
             <p class="md-stat__label">Overdue Amount</p>
             <p class="md-stat__value" id="stat-val-overdue" data-inr="320000">₹3.20L</p>
-            <p class="md-stat__sub">2 invoices · avg 22 days late</p>
-            <p class="md-stat__delta md-stat__delta--danger">Action required</p>
           </div>
         </button>
         <div class="md-stat pay-stat--royal">
           <div class="md-stat__icon md-stat__icon--royal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15.5A9 9 0 1 1 8.5 3"/><path d="M21 3v6h-6"/></svg></div>
-          <div class="md-stat__body pay-stat__rate">
+          <div class="md-stat__body">
             <p class="md-stat__label">Collection Rate</p>
             <p class="md-stat__value">87.4%</p>
-            <p class="md-stat__sub">Payments received on time</p>
-            <p class="md-stat__delta md-stat__delta--success">↑ 2.3% vs last month</p>
-          </div>
-          <div class="pay-ring" id="collection-ring">
-            <svg width="64" height="64" viewBox="0 0 64 64">
-              <circle cx="32" cy="32" r="27" stroke="#e8ecf4" stroke-width="6" fill="none"/>
-              <circle cx="32" cy="32" r="27" stroke="#2a52a8" stroke-width="6" fill="none"
-                stroke-dasharray="169.6"
-                stroke-dashoffset="21.4"
-                stroke-linecap="round"
-                transform="rotate(-90 32 32)"/>
-            </svg>
-            <span class="pay-ring__text">87%</span>
           </div>
         </div>
       </section>

@@ -7,10 +7,12 @@
 
 .app {
   display: grid;
-  grid-template-columns: var(--rail-width) var(--panel-width) 1fr;
+  grid-template-columns: var(--panel-width) 1fr;
   height: 100vh;
   background: var(--canvas);
 }
+/* Icon rail hidden — first column removed from grid */
+.icon-rail { display: none !important; }
 
 /* ============================================================================
    COL 1 — ICON RAIL
@@ -992,13 +994,14 @@
 /* Donut */
 .donut-wrap {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-4);
+  grid-template-columns: 200px 1fr;
+  gap: var(--space-5);
+  align-items: center;
   overflow: visible;                       /* never clip the chart */
 }
 .donut-chart {
   position: relative;
-  width: 100%;
+  width: 200px;
   height: 200px;
   display: grid;
   place-items: center;
@@ -1030,8 +1033,8 @@
 .donut-legend {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  margin-top: var(--space-2);
+  gap: 10px;
+  margin-top: 0;
 }
 .donut-legend li {
   display: flex;

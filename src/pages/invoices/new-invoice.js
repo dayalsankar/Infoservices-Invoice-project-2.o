@@ -156,12 +156,7 @@
     } else {
       next.hidden = false;
       generate.hidden = true;
-      const labels = [
-        'Next: Fetch Timesheets →',
-        'Next: Calculate & Tax →',
-        'Next: Preview Invoice →',
-        'Generate Invoice →',
-      ];
+      const labels = ['Next →', 'Next →', 'Next →', 'Next →'];
       next.textContent = labels[state.step];
     }
   }

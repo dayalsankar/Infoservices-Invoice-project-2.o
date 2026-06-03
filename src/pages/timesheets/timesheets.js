@@ -177,19 +177,18 @@
     const billableINR = approved.reduce((a, t) => a + (t.currency === 'INR' ? t.amount : t.amount * INR_PER_USD), 0);
 
     const stats = [
-      { label: 'Timesheets This Period', value: TIMESHEETS.length, sub: 'June 2026', tint: 'azure', icon: iconCalendar(), trend: { dir: 'up', text: '↑ 6 vs last month' } },
+      { label: 'Timesheets This Period', value: TIMESHEETS.length, sub: 'June 2026', tint: 'azure', icon: iconCalendar(), trend: { dir: 'up', text: '↑ 6 vs last month' }, click: () => setTab('all') },
       { label: 'Pending Review',         value: pending,           sub: 'Awaiting approval', tint: 'warning', icon: iconClock(), trend: { text: 'Action required', color: 'var(--warning-fg)' }, click: () => setTab('pending') },
-      { label: 'Total Hours Billed',     value: hoursApproved.toLocaleString() + ' hrs', sub: 'June 2026 approved', tint: 'success', icon: iconActivity(), trend: { dir: 'up', text: '↑ 8.4% vs May' } },
-      { label: 'Billable Amount',        value: '₹' + formatLakhs(billableINR), sub: 'Ready for invoicing', tint: 'royal', icon: iconRupee(), trend: { text: 'Ready for invoicing', color: 'var(--brand-royal)' } },
+      { label: 'Total Hours Billed',     value: hoursApproved.toLocaleString() + ' hrs', sub: 'June 2026 approved', tint: 'success', icon: iconActivity(), trend: { dir: 'up', text: '↑ 8.4% vs May' }, click: () => setTab('approved') },
+      { label: 'Billable Amount',        value: '₹' + formatLakhs(billableINR), sub: 'Ready for invoicing', tint: 'royal', icon: iconRupee(), trend: { text: 'Ready for invoicing', color: 'var(--brand-royal)' }, click: () => { window.location.href = '../reports/?tab=utilization'; } },
     ];
 
     document.getElementById('stats-strip').innerHTML = stats.map((s, i) => `
-      <article class="md-stat" data-stat-idx="${i}" ${s.click ? '' : 'data-clickable="false"'}>
+      <article class="md-stat" data-stat-idx="${i}" ${s.click ? 'style="cursor:pointer"' : ''}>
         <span class="md-stat__icon md-stat__icon--${s.tint}">${s.icon}</span>
         <div>
           <p class="md-stat__label">${s.label}</p>
           <p class="md-stat__value">${s.value}</p>
-          <p class="md-stat__sub" style="font-size:11px;color:${s.trend.color || 'var(--text-tertiary)'};margin-top:2px">${s.trend.text}</p>
         </div>
       </article>
     `).join('');
@@ -270,7 +269,6 @@
   function renderTable() {
     const rows = applyFiltersToData();
     const body = document.getElementById('ts-table-body');
-    const empty = document.getElementById('ts-empty');
 
     /* Result count + tab badges */
     document.getElementById('result-count').textContent = `${rows.length} timesheet${rows.length === 1 ? '' : 's'}`;
@@ -278,26 +276,8 @@
 
     if (rows.length === 0) {
       body.innerHTML = '';
-      empty.hidden = false;
-      const emptyTitles = {
-        all: 'No timesheets yet',
-        pending: 'All caught up!',
-        approved: 'No approved timesheets yet',
-        rejected: 'No rejections',
-        draft: 'No drafts',
-      };
-      const emptySubs = {
-        all: 'Timesheets submitted by consultants will appear here.',
-        pending: 'No timesheets are waiting for your review.',
-        approved: 'Approved timesheets will appear here once you start approving.',
-        rejected: 'All reviewed timesheets have been approved.',
-        draft: 'Drafts in progress will appear here.',
-      };
-      document.getElementById('empty-title').textContent = emptyTitles[state.tab];
-      document.getElementById('empty-sub').textContent = emptySubs[state.tab];
       return;
     }
-    empty.hidden = true;
 
     body.innerHTML = rows.map((t, i) => {
       const c = lookup.consultant(t.consultantId);
@@ -526,9 +506,7 @@
     document.querySelectorAll('[data-view]').forEach(b => b.classList.toggle('is-active', b.dataset.view === view));
     document.getElementById('view-table').hidden = view !== 'table';
     document.getElementById('view-cards').hidden = view !== 'cards';
-    document.getElementById('view-calendar').hidden = view !== 'calendar';
     if (view === 'cards')    renderCardsView();
-    if (view === 'calendar') renderCalendarView();
   }
 
   /* ── 9. DRAWER ────────────────────────────────────────────────────────── */
@@ -1442,8 +1420,8 @@
       toast({ type: 'info', title: `Exporting ${state.selected.size} selected timesheets…` });
     });
 
-    /* Clear filters */
-    document.getElementById('btn-clear-filters').addEventListener('click', () => {
+    /* Clear filters (element removed with empty state — guard) */
+    document.getElementById('btn-clear-filters')?.addEventListener('click', () => {
       state.q = ''; state.consultantId = 'all'; state.billing = 'all';
       document.getElementById('global-search').value = '';
       document.getElementById('filter-consultant').value = 'all';

@@ -73,9 +73,9 @@
           </a>
         </li>
         <li role="none">
-          <button class="rail-item" aria-label="Reports" role="menuitem" data-rail="reports">
+          <a class="rail-item" href="../reports/" aria-label="Reports" role="menuitem" data-rail="reports">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 16V12M12 16V8M17 16v-6"/></svg>
-          </button>
+          </a>
         </li>
         <li role="none">
           <button class="rail-item has-dot" aria-label="Notifications (7 new)" role="menuitem" data-rail="notifications">
@@ -115,7 +115,6 @@
 
       <!-- User header -->
       <header class="panel-user">
-        <p class="panel-user__greet">Good morning <span aria-hidden="true">☀️</span></p>
         <h2 class="panel-user__name">Priya Sharma</h2>
         <span class="panel-user__role">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
@@ -159,7 +158,7 @@
         </a>
 
         <p class="nav-group__label">INTELLIGENCE</p>
-        <a class="nav-item" href="#" data-nav="reports">
+        <a class="nav-item" href="../reports/" data-nav="reports">
           <svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 16V12M12 16V8M17 16v-6"/></svg>
           <span class="nav-item__label">Reports &amp; Analytics</span>
         </a>
@@ -260,11 +259,6 @@
       <header class="topbar">
         <div class="topbar__title">
           <h1 class="topbar__heading">Finance Dashboard</h1>
-          <nav class="breadcrumb" aria-label="Breadcrumb">
-            <span>INFO Services</span>
-            <span class="breadcrumb__sep" aria-hidden="true">·</span>
-            <span>Enterprise Invoicing Platform</span>
-          </nav>
         </div>
 
         <div class="topbar__actions">
@@ -282,15 +276,15 @@
             </button>
           </div>
 
-          <button class="icon-btn icon-btn--bell" aria-label="Notifications (7 new)">
+          <a class="icon-btn icon-btn--bell" href="../notifications/" aria-label="Notifications (7 new)">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
             <span class="icon-btn__dot"></span>
-          </button>
+          </a>
 
-          <button class="btn btn--primary">
+          <a class="btn btn--primary" href="../invoices/new.html" style="text-decoration:none">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
             New Invoice
-          </button>
+          </a>
         </div>
       </header>
 
@@ -305,9 +299,6 @@
 
           <div class="hero__left">
             <p class="hero__date">Friday, 30 May 2026</p>
-            <h2 class="hero__greeting">
-              Good Morning, Priya! <span class="hero__wave" aria-hidden="true">👋</span>
-            </h2>
             <div class="hero__chips">
               <a class="hero-chip" href="../approvals/?tab=invoice" style="text-decoration:none;color:inherit">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
@@ -342,28 +333,28 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M12 18v-6M9 15h6"/></svg>
             Generate Invoice
           </a>
-          <button class="qa-btn">
+          <a class="qa-btn" href="../payments/" style="text-decoration:none;color:inherit">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
             Record Payment
-          </button>
+          </a>
           <a class="qa-btn" href="../approvals/" style="text-decoration:none;color:inherit">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.1V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
             Review Approvals
           </a>
-          <button class="qa-btn">
+          <a class="qa-btn" href="../reports/" style="text-decoration:none;color:inherit">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 16V12M12 16V8M17 16v-6"/></svg>
             View Reports
-          </button>
-          <button class="qa-btn">
+          </a>
+          <a class="qa-btn" href="../reports/?export=true" style="text-decoration:none;color:inherit">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5M12 15V3"/></svg>
             Export Data
-          </button>
+          </a>
         </section>
 
         <!-- ══ C) KPI cards ════════════════════════════════════════════════ -->
         <section class="kpi-row" aria-label="Key performance indicators">
 
-          <article class="kpi kpi--revenue">
+          <a class="kpi kpi--revenue" href="../reports/?tab=invoice" style="text-decoration:none;color:inherit">
             <header class="kpi__head">
               <span class="kpi__icon kpi__icon--azure">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h4"/></svg>
@@ -377,7 +368,7 @@
             <p class="kpi__value num">1,248</p>
             <p class="kpi__sub">₹4.86 Cr total value</p>
             <span class="kpi__stripe" aria-hidden="true"></span>
-          </article>
+          </a>
 
           <a class="kpi kpi--collected" href="../payments/?tab=received" style="text-decoration:none;color:inherit">
             <header class="kpi__head">
@@ -610,7 +601,7 @@
                 <h3 class="card__title">Top Clients</h3>
                 <p class="card__subtitle">By invoiced volume (YTD)</p>
               </div>
-              <a class="link" href="#">View All →</a>
+              <a class="link" href="../reports/?tab=client">View All →</a>
             </header>
 
             <table class="data-table">
@@ -692,7 +683,7 @@
                   <button class="pill-tab" role="tab" aria-selected="false" data-filter="pending">Pending</button>
                   <button class="pill-tab" role="tab" aria-selected="false" data-filter="overdue">Overdue</button>
                 </div>
-                <a class="link" href="#">View All →</a>
+                <a class="link" href="../invoices/">View All →</a>
               </div>
             </header>
 

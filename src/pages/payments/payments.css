@@ -71,11 +71,58 @@
 }
 
 /* ── Stats strip ──────────────────────────────────────────────────────── */
-.pay-stats { margin-top: 16px; }
-.pay-stat--success { border-top: 3px solid var(--success); }
-.pay-stat--warning { border-top: 3px solid var(--warning); }
-.pay-stat--danger  { border-top: 3px solid var(--danger);  }
-.pay-stat--royal   { border-top: 3px solid var(--brand-royal); position: relative; }
+/* Top-border accents removed — icon tint carries the color signal */
+.pay-stat--success,
+.pay-stat--warning,
+.pay-stat--danger,
+.pay-stat--royal { border-top: none; position: relative; }
+
+.md-stats.pay-stats {
+  align-items: stretch;
+  margin: 12px 0 24px;
+  padding: 0 24px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+.md-stats.pay-stats .md-stat {
+  padding: 16px;
+  min-height: 0;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--white);
+  box-shadow: 0 1px 2px rgba(26, 31, 94, .04);
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 12px;
+  align-items: center;
+}
+.md-stats.pay-stats .md-stat__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+}
+.md-stats.pay-stats .md-stat__icon svg { width: 20px; height: 20px; }
+.md-stats.pay-stats .md-stat__body { display: flex; flex-direction: column; gap: 1px; }
+.md-stats.pay-stats .md-stat__label {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+.md-stats.pay-stats .md-stat__value {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--brand-navy);
+  line-height: 1.1;
+  letter-spacing: -.01em;
+}
+@media (max-width: 1280px) {
+  .md-stats.pay-stats { grid-template-columns: repeat(2, 1fr); }
+}
 
 /* Sparkline (CSS-only mini bars) */
 .pay-spark {
@@ -246,21 +293,16 @@
 .pay-row[data-status="writtenoff"] .pay-row__inv { text-decoration: line-through; }
 
 .pay-row__check {
-  width: 18px; height: 18px; border: 1.5px solid var(--border); border-radius: 4px;
-  background: var(--white); cursor: pointer; appearance: none; position: relative;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  accent-color: var(--brand-royal);
   justify-self: center;
 }
 .pay-table__head > :first-child {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-}
-.pay-table__head > :first-child::before {
-  content: '';
-  width: 18px; height: 18px;
-  border: 1.5px solid var(--border); border-radius: 4px;
-  background: var(--white);
-  display: inline-block;
 }
 
 /* Warning button variant (missing from base) */
@@ -272,14 +314,6 @@
 .btn--warning:hover {
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(245, 158, 11, .35);
-}
-.pay-row__check:checked {
-  background: var(--brand-royal); border-color: var(--brand-royal);
-}
-.pay-row__check:checked::after {
-  content: ''; position: absolute; left: 4px; top: 1px;
-  width: 5px; height: 9px; border: solid var(--white); border-width: 0 2px 2px 0;
-  transform: rotate(45deg);
 }
 .pay-row__inv {
   font-weight: 600; font-size: 13px; color: var(--brand-navy);

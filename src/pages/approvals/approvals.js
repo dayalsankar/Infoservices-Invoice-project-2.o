@@ -417,7 +417,7 @@ function renderAllApprovals(panel) {
   list.className = 'apv-rowlist';
   list.innerHTML = `
     <div class="apv-rowlist__head" role="row">
-      <span></span><span></span><span>Type</span><span>Reference</span>
+      <span><input type="checkbox" class="apv-row__check" id="apv-select-all" aria-label="Select all" /></span><span></span><span>Type</span><span>Reference</span>
       <span>Description</span><span>Submitted By</span><span>Date</span>
       <span style="text-align:right">Amount</span><span style="text-align:right">Actions</span>
     </div>
@@ -1895,9 +1895,9 @@ function updateCounts() {
     const el = document.getElementById(`tab-count-${k}`);
     if (el) el.textContent = v;
   });
-  // Stats strip
-  document.getElementById('stat-pending').textContent = counts.all;
-  document.getElementById('stat-invoice').textContent = counts.invoice;
+  // Stats strip (cards removed — null-guard)
+  const sp = document.getElementById('stat-pending'); if (sp) sp.textContent = counts.all;
+  const si = document.getElementById('stat-invoice'); if (si) si.textContent = counts.invoice;
   // Side nav badge
   document.getElementById('nav-badge-apv').textContent = counts.all;
 
@@ -2013,6 +2013,19 @@ function init() {
     const checkbox = e.target.closest('.apv-row__check');
     if (checkbox) {
       e.stopPropagation();
+      // Select-all header checkbox
+      if (checkbox.id === 'apv-select-all') {
+        document.querySelectorAll('.apv-row .apv-row__check').forEach(cb => {
+          cb.checked = checkbox.checked;
+          const rowId = cb.dataset.id;
+          if (!rowId) return;
+          if (checkbox.checked) state.selectedIds.add(rowId);
+          else state.selectedIds.delete(rowId);
+          cb.closest('.apv-row')?.classList.toggle('is-selected', checkbox.checked);
+        });
+        updateBulkBar();
+        return;
+      }
       const id = checkbox.dataset.id;
       if (checkbox.checked) state.selectedIds.add(id);
       else state.selectedIds.delete(id);

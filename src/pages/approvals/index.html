@@ -36,7 +36,7 @@
       <ul class="rail-group" role="menu">
         <li role="none"><a class="rail-item is-active has-dot" href="./" aria-label="Approvals" role="menuitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.1V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg></a></li>
         <li role="none"><a class="rail-item" href="../payments/" aria-label="Payments" role="menuitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2.5"/><path d="M2 10h20"/></svg></a></li>
-        <li role="none"><button class="rail-item" aria-label="Reports" role="menuitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 16V12M12 16V8M17 16v-6"/></svg></button></li>
+        <li role="none"><a class="rail-item" href="../reports/" aria-label="Reports" role="menuitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 16V12M12 16V8M17 16v-6"/></svg></a></li>
         <li role="none"><button class="rail-item has-dot" aria-label="Notifications" role="menuitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></button></li>
       </ul>
       <span class="rail-divider" role="separator"></span>
@@ -51,9 +51,8 @@
     <!-- ── SIDE PANEL ────────────────────────────────────────────────────── -->
     <aside class="side-panel" aria-label="Workspace navigation">
       <header class="panel-user">
-        <p class="panel-user__greet">Good morning <span aria-hidden="true">☀️</span></p>
-        <h2 class="panel-user__name">Rajesh Kumar</h2>
-        <span class="panel-user__role"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg> Signing Authority</span>
+        <h2 class="panel-user__name">Priya Sharma</h2>
+        <span class="panel-user__role"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg> Finance Admin</span>
       </header>
       <nav class="panel-nav" aria-label="Main navigation">
         <p class="nav-group__label">MAIN</p>
@@ -65,7 +64,7 @@
         <a class="nav-item is-active" href="./" data-nav="approvals"><svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.1V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg><span class="nav-item__label">Approvals</span><span class="nav-item__badge nav-item__badge--danger" id="nav-badge-apv">18</span></a>
         <a class="nav-item" href="../payments/" data-nav="payments"><svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2.5"/><path d="M2 10h20"/></svg><span class="nav-item__label">Payments</span><span class="nav-item__badge nav-item__badge--danger">2</span></a>
         <p class="nav-group__label">INTELLIGENCE</p>
-        <a class="nav-item" href="#" data-nav="reports"><svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 16V12M12 16V8M17 16v-6"/></svg><span class="nav-item__label">Reports &amp; Analytics</span></a>
+        <a class="nav-item" href="../reports/" data-nav="reports"><svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 16V12M12 16V8M17 16v-6"/></svg><span class="nav-item__label">Reports &amp; Analytics</span></a>
         <a class="nav-item" href="#" data-nav="notifications"><svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg><span class="nav-item__label">Notifications</span><span class="nav-item__badge nav-item__badge--danger" id="nav-badge-notif">7</span></a>
         <p class="nav-group__label">GOVERNANCE</p>
         <a class="nav-item" href="#" data-nav="audit"><svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span class="nav-item__label">Audit &amp; Compliance</span></a>
@@ -81,11 +80,6 @@
       <header class="topbar apv-topbar">
         <div class="topbar__title">
           <h1 class="topbar__heading">Approval Management</h1>
-          <nav class="breadcrumb" aria-label="Breadcrumb">
-            <a href="../dashboard/">INFO Services</a>
-            <span class="breadcrumb__sep" aria-hidden="true">·</span>
-            <span aria-current="page">Approval Management</span>
-          </nav>
         </div>
         <div class="topbar__actions">
           <label class="topbar__search">
@@ -148,31 +142,12 @@
 
       <!-- Stats strip -->
       <section class="md-stats apv-stats" aria-label="Approval statistics">
-        <button class="md-stat apv-stat--warning" data-stat="pending">
-          <div class="md-stat__icon md-stat__icon--warning"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
-          <div class="md-stat__body">
-            <p class="md-stat__label">Pending Actions</p>
-            <p class="md-stat__value" id="stat-pending">15</p>
-            <p class="md-stat__sub">Across all categories</p>
-            <p class="md-stat__delta md-stat__delta--warning">↑ 3 new today</p>
-          </div>
-        </button>
-        <button class="md-stat apv-stat--azure" data-stat="invoice">
-          <div class="md-stat__icon md-stat__icon--azure"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M9 12l2 2 4-4"/></svg></div>
-          <div class="md-stat__body">
-            <p class="md-stat__label">Invoice Approvals</p>
-            <p class="md-stat__value" id="stat-invoice">3</p>
-            <p class="md-stat__sub">Awaiting sign-off</p>
-            <p class="md-stat__delta">₹13,17,520 total value</p>
-          </div>
-        </button>
         <div class="md-stat apv-stat--success">
           <div class="md-stat__icon md-stat__icon--success"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
           <div class="md-stat__body">
             <p class="md-stat__label">Avg Approval Time</p>
             <p class="md-stat__value">1.8 days</p>
-            <p class="md-stat__sub">This month</p>
-            <p class="md-stat__delta md-stat__delta--success">↓ 0.4 days vs last month</p>
+            <p class="md-stat__sub md-stat__sub--success">↓ 0.4 days vs last month</p>
           </div>
         </div>
         <div class="md-stat apv-stat--royal">
@@ -180,8 +155,7 @@
           <div class="md-stat__body">
             <p class="md-stat__label">Approved This Month</p>
             <p class="md-stat__value">28</p>
-            <p class="md-stat__sub">₹48.25L total approved</p>
-            <p class="md-stat__delta md-stat__delta--success">↑ 12.1% vs May</p>
+            <p class="md-stat__sub md-stat__sub--success">↑ 12.1% vs May · ₹48.25L total</p>
           </div>
         </div>
       </section>

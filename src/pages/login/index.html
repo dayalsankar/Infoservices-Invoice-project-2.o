@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#1a1f5e" />
+  <title>Sign in · INFO Services Invoicing Platform</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="./login.css" />
+</head>
+<body>
+  <!-- ── BACKGROUND LAYERS ─────────────────────────────────────────────── -->
+
+  <!-- Layer 1: shifting gradient + Layer 3: dot grid + Layer 6: noise -->
+  <div class="login-bg" aria-hidden="true">
+    <div class="bg-gradient"></div>
+    <div class="bg-grid"></div>
+    <div class="bg-noise"></div>
+  </div>
+
+  <!-- Layer 2: 6 floating orbs -->
+  <div class="bg-orbs" aria-hidden="true">
+    <div class="bg-orb bg-orb--1"></div>
+    <div class="bg-orb bg-orb--2"></div>
+    <div class="bg-orb bg-orb--3"></div>
+    <div class="bg-orb bg-orb--4"></div>
+    <div class="bg-orb bg-orb--5"></div>
+    <div class="bg-orb bg-orb--6"></div>
+  </div>
+
+  <!-- Layer 5: floating geometric rings -->
+  <div class="bg-shapes" aria-hidden="true">
+    <div class="bg-shape bg-shape--ring-large"></div>
+    <div class="bg-shape bg-shape--ring-medium"></div>
+    <div class="bg-shape bg-shape--hex"></div>
+  </div>
+
+  <!-- Layer 4: canvas particles (drawn in JS) -->
+  <canvas id="particle-canvas" aria-hidden="true"></canvas>
+
+  <!-- ── LOGIN PAGE / CARD ─────────────────────────────────────────────── -->
+  <div class="login-page">
+    <div class="login-card" role="dialog" aria-label="Sign in">
+
+      <!-- LEFT — Brand panel -->
+      <aside class="lc">
+        <div class="lc-brand-row">
+          <div class="lc-logo-mark">IS</div>
+          <div class="lc-brand-text">
+            <div class="lc-brand-name">INFO Services</div>
+            <div class="lc-brand-tagline">Intelligence. Impact.</div>
+          </div>
+        </div>
+
+        <p class="lc-platform">Enterprise Invoicing &amp;<br>Billing Platform</p>
+
+        <hr class="lc-divider" />
+
+        <ul class="lc-features">
+          <li class="lc-feature">
+            <span class="lc-feature__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h4"/></svg>
+            </span>
+            <div>
+              <p class="lc-feature__title">Automated Invoicing</p>
+              <p class="lc-feature__sub">GST-compliant PDFs from timesheets</p>
+            </div>
+          </li>
+          <li class="lc-feature">
+            <span class="lc-feature__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 16V12M12 16V8M17 16v-6"/></svg>
+            </span>
+            <div>
+              <p class="lc-feature__title">Financial Analytics</p>
+              <p class="lc-feature__sub">Real-time revenue &amp; aging reports</p>
+            </div>
+          </li>
+          <li class="lc-feature">
+            <span class="lc-feature__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </span>
+            <div>
+              <p class="lc-feature__title">Role-based Access</p>
+              <p class="lc-feature__sub">8 personas with full audit trail</p>
+            </div>
+          </li>
+        </ul>
+
+        <div class="lc-stats">
+          <div class="lc-stat">
+            <div class="lc-stat__num">8</div>
+            <div class="lc-stat__label">Roles</div>
+          </div>
+          <div class="lc-stat-divider"></div>
+          <div class="lc-stat">
+            <div class="lc-stat__num">14</div>
+            <div class="lc-stat__label">DB Tables</div>
+          </div>
+          <div class="lc-stat-divider"></div>
+          <div class="lc-stat">
+            <div class="lc-stat__num">7</div>
+            <div class="lc-stat__label">Screens</div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- RIGHT — Login form + roles -->
+      <main class="rc">
+
+        <header class="rf-header">
+          <h1 class="rf-title">Sign in</h1>
+          <p class="rf-sub">Use your credentials or choose a demo role to explore</p>
+        </header>
+
+        <form id="login-form" class="rf-form" novalidate>
+          <div class="rf-field">
+            <label for="login-email" class="rf-label">Email</label>
+            <div class="rf-input-wrap">
+              <svg class="rf-input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="m22 6-10 7L2 6"/></svg>
+              <input id="login-email" class="input" type="email" placeholder="you@infoservices.com" autocomplete="email" />
+            </div>
+            <p class="rf-error" id="err-email" hidden>Please enter a valid email address.</p>
+          </div>
+
+          <div class="rf-field">
+            <label for="login-password" class="rf-label">Password</label>
+            <div class="rf-input-wrap">
+              <svg class="rf-input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <input id="login-password" class="input" type="password" placeholder="Enter password" autocomplete="current-password" />
+              <button class="rf-pw-toggle" id="pw-toggle" type="button" aria-label="Show password">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+            </div>
+            <p class="rf-error" id="err-pw" hidden>Password is required.</p>
+          </div>
+
+          <div class="rf-row">
+            <label class="rf-remember">
+              <input type="checkbox" id="remember-me" />
+              <span>Remember me</span>
+            </label>
+            <button class="btn-forgot" type="button">Forgot password?</button>
+          </div>
+
+          <button class="btn-signin" id="btn-signin" type="submit">Sign In</button>
+        </form>
+
+        <div class="rf-divider"><span>or select a demo role</span></div>
+
+        <div class="rf-roles-header">
+          <span class="rf-roles-label">Demo Accounts</span>
+          <span class="rf-roles-hint">Click any role to instantly explore</span>
+        </div>
+
+        <div class="rf-roles-grid" id="roles-grid">
+          <button class="role-card" data-role="finance-admin" tabindex="0">
+            <div class="role-card__avatar rc-navy">PS</div>
+            <div class="role-card__body">
+              <div class="role-card__role">Finance Admin</div>
+              <div class="role-card__name">Priya Sharma</div>
+            </div>
+            <span class="role-card__badge bc-success">Full Access</span>
+          </button>
+          <button class="role-card" data-role="super-admin" tabindex="0">
+            <div class="role-card__avatar rc-royal">AM</div>
+            <div class="role-card__body">
+              <div class="role-card__role">Super Admin</div>
+              <div class="role-card__name">Arjun Mehta</div>
+            </div>
+            <span class="role-card__badge bc-royal">Admin</span>
+          </button>
+          <button class="role-card" data-role="delivery-manager" tabindex="0">
+            <div class="role-card__avatar rc-azure">KN</div>
+            <div class="role-card__body">
+              <div class="role-card__role">Delivery Manager</div>
+              <div class="role-card__name">Kavitha Nair</div>
+            </div>
+            <span class="role-card__badge bc-azure">Approver</span>
+          </button>
+          <button class="role-card" data-role="signing-authority" tabindex="0">
+            <div class="role-card__avatar rc-purple">RK</div>
+            <div class="role-card__body">
+              <div class="role-card__role">Signing Authority</div>
+              <div class="role-card__name">Rajesh Kumar</div>
+            </div>
+            <span class="role-card__badge bc-purple">Sign-off</span>
+          </button>
+          <button class="role-card" data-role="consultant" tabindex="0">
+            <div class="role-card__avatar rc-green">RV</div>
+            <div class="role-card__body">
+              <div class="role-card__role">Consultant</div>
+              <div class="role-card__name">Rahul Verma</div>
+            </div>
+            <span class="role-card__badge bc-grey">Limited</span>
+          </button>
+          <button class="role-card" data-role="hr-admin" tabindex="0">
+            <div class="role-card__avatar rc-amber">SP</div>
+            <div class="role-card__body">
+              <div class="role-card__role">HR / Ops Admin</div>
+              <div class="role-card__name">Sneha Pillai</div>
+            </div>
+            <span class="role-card__badge bc-amber">Data Entry</span>
+          </button>
+          <button class="role-card" data-role="executive" tabindex="0">
+            <div class="role-card__avatar rc-indigo">VB</div>
+            <div class="role-card__body">
+              <div class="role-card__role">Executive</div>
+              <div class="role-card__name">Vikram Bose</div>
+            </div>
+            <span class="role-card__badge bc-grey">View Only</span>
+          </button>
+          <button class="role-card" data-role="auditor" tabindex="0">
+            <div class="role-card__avatar rc-red">MJ</div>
+            <div class="role-card__body">
+              <div class="role-card__role">Auditor</div>
+              <div class="role-card__name">Meera Joshi</div>
+            </div>
+            <span class="role-card__badge bc-grey">Read Only</span>
+          </button>
+        </div>
+
+        <div class="rf-demo-note">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <span>Demo mode · No real authentication · Click any role above to explore instantly</span>
+        </div>
+
+        <p class="rf-footer">© 2026 INFO Services Pvt Ltd · v1.0 Demo</p>
+      </main>
+    </div>
+  </div>
+
+  <script type="module" src="./login.js"></script>
+</body>
+</html>

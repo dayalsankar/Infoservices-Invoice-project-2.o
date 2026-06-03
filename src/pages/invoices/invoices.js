@@ -156,21 +156,14 @@
   function renderTable() {
     const rows = applyFilters();
     const body = document.getElementById('inv-table-body');
-    const empty = document.getElementById('inv-empty');
     document.getElementById('result-count').textContent = `${rows.length} invoice${rows.length === 1 ? '' : 's'}`;
     updateTabBadges();
     syncNavBadge();
 
     if (rows.length === 0) {
       body.innerHTML = '';
-      empty.hidden = false;
-      const tIcon = { all: 'No invoices yet', draft: 'No drafts saved', pending: 'No pending approvals', approved: 'No approved/sent invoices', paid: 'No paid invoices yet', overdue: 'No overdue invoices' };
-      const tSub  = { all: 'Generate your first invoice from approved timesheets.', draft: 'Start creating an invoice to save a draft.', pending: 'All invoices have been reviewed.', approved: '', paid: 'Payments will appear here as they come in.', overdue: 'All invoices are within payment terms.' };
-      document.getElementById('empty-title').textContent = tIcon[state.tab] || 'No invoices match these filters';
-      document.getElementById('empty-sub').textContent   = tSub[state.tab]  || 'Try adjusting your search or filters.';
       return;
     }
-    empty.hidden = true;
 
     body.innerHTML = rows.map(inv => {
       const cli = lookup.client(inv.clientId);
@@ -987,9 +980,7 @@ Finance, INFO Services</textarea>
     document.querySelectorAll('[data-view]').forEach(b => b.classList.toggle('is-active', b.dataset.view === view));
     document.getElementById('view-table').hidden = view !== 'table';
     document.getElementById('view-cards').hidden = view !== 'cards';
-    document.getElementById('view-timeline').hidden = view !== 'timeline';
     if (view === 'cards')    renderCardsView();
-    if (view === 'timeline') renderTimelineView();
   }
 
   /* ── TOAST ────────────────────────────────────────────────────────────── */
@@ -1192,8 +1183,8 @@ Finance, INFO Services</textarea>
     document.getElementById('bulk-send').addEventListener('click', () => startSendFlow(Array.from(state.selected)));
     document.getElementById('bulk-export').addEventListener('click', startExportFlow);
 
-    /* Clear filters */
-    document.getElementById('btn-clear-filters').addEventListener('click', () => {
+    /* Clear filters (element removed with empty state — guard) */
+    document.getElementById('btn-clear-filters')?.addEventListener('click', () => {
       state.q = ''; state.clientId = 'all'; state.taxType = 'all';
       document.getElementById('global-search').value = '';
       document.getElementById('filter-client').value = 'all';

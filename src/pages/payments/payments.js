@@ -375,7 +375,7 @@ function renderTable(panel, items) {
   wrap.className = 'pay-table';
   wrap.innerHTML = `
     <div class="pay-table__head">
-      <span></span><span>Invoice #</span><span>Client / Consultant</span>
+      <span><input type="checkbox" class="pay-row__check" id="pay-select-all" aria-label="Select all" /></span><span>Invoice #</span><span>Client / Consultant</span>
       <span style="text-align:right">Inv Amount</span>
       <span style="text-align:right">Paid</span>
       <span style="text-align:right">Balance</span>
@@ -1537,6 +1537,19 @@ function init() {
     const check = e.target.closest('.pay-row__check');
     if (check) {
       e.stopPropagation();
+      // Select-all header checkbox
+      if (check.id === 'pay-select-all') {
+        document.querySelectorAll('.pay-row .pay-row__check').forEach(cb => {
+          cb.checked = check.checked;
+          const rowId = cb.dataset.id;
+          if (!rowId) return;
+          if (check.checked) state.selectedIds.add(rowId);
+          else state.selectedIds.delete(rowId);
+          cb.closest('.pay-row')?.classList.toggle('is-selected', check.checked);
+        });
+        updateBulkBar();
+        return;
+      }
       const id = check.dataset.id;
       if (check.checked) state.selectedIds.add(id);
       else state.selectedIds.delete(id);
